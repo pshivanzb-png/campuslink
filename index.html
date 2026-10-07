@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CampusLink – Swap skills with students in your college</title>
+<meta name="description" content="Tell us what you can teach and what you need. We match you with a student in your own college who needs what you offer and offers what you need. ₹99, lifetime access.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14213d; --muted:#5b6478; --bg:#f4f7fb; --card:#ffffff;
+  --blue:#2b59ff; --blue-dark:#1d3fcc; --sun:#ffb703; --line:#dde3ee; --ok:#0f8a5f; --err:#c0302b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:17px}
+h1,h2,h3{font-family:'Bricolage Grotesque','DM Sans',sans-serif;line-height:1.1;margin:0}
+a{color:var(--blue)}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{padding:18px 0}
+header .wrap{display:flex;justify-content:space-between;align-items:center}
+.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.5px}
+.brand span{color:var(--blue)}
+.linkbtn{background:none;border:0;color:var(--blue);font:inherit;font-weight:500;cursor:pointer;text-decoration:underline;padding:6px}
+button,input,textarea{font:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:36px 0 56px}
+.hero h1{font-size:clamp(38px,6vw,60px);font-weight:800;letter-spacing:-1.5px}
+.hero p.sub{font-size:19px;color:var(--muted);max-width:480px;margin:18px 0 26px}
+.btn{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:15px 26px;font-weight:700;font-size:17px;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--blue-dark)}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn.ghost{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.price{margin-left:14px;color:var(--muted);font-size:15px}
+
+/* swap visual: the one memorable thing */
+.swap{position:relative;display:grid;gap:0}
+.pcard{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:16px 18px;box-shadow:6px 6px 0 var(--ink)}
+.pcard + .pcard{margin-top:46px;margin-left:28px;box-shadow:6px 6px 0 var(--sun)}
+.pcard b{font-family:'Bricolage Grotesque',sans-serif;font-size:19px}
+.pcard small{display:block;color:var(--muted);margin-bottom:8px}
+.tag{display:inline-block;border-radius:999px;padding:3px 12px;font-size:14px;font-weight:500;margin:3px 4px 0 0}
+.tag.give{background:#e3ebff;color:var(--blue-dark)}
+.tag.get{background:#fff1cc;color:#8a5a00}
+.arrows{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--sun);border:2px solid var(--ink);border-radius:50%;width:52px;height:52px;display:grid;place-items:center;z-index:2}
+
+/* steps */
+section.block{padding:40px 0}
+section.block h2{font-size:clamp(28px,4vw,38px);font-weight:800;letter-spacing:-.8px;margin-bottom:22px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0;margin:0;list-style:none;counter-reset:s}
+.steps li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;counter-increment:s}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;margin-bottom:10px}
+.steps h3{font-size:20px;margin-bottom:6px}
+.steps p{margin:0;color:var(--muted);font-size:16px}
+
+/* form + panels */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;max-width:640px;margin:0 auto}
+.pay{display:grid;grid-template-columns:170px 1fr;gap:22px;align-items:center;background:#fff8e1;border:1px solid #f1dfa6;border-radius:14px;padding:16px;margin-bottom:22px}
+.qr{width:170px;height:170px;border-radius:10px;background:#fff;border:1px dashed #cdb86a;display:grid;place-items:center;text-align:center;font-size:13px;color:var(--muted);overflow:hidden}
+.qr img{width:100%;height:100%;object-fit:contain}
+label{display:block;font-weight:700;margin:16px 0 6px;font-size:16px}
+.hint{font-weight:400;color:var(--muted);font-size:14px}
+input,textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff;color:var(--ink)}
+input:focus,textarea:focus{border-color:var(--blue);outline:none}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.msg{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:15px}
+.msg.err{background:#fdeceb;color:var(--err)}
+.msg.ok{background:#e4f6ee;color:var(--ok)}
+.code{font-family:ui-monospace,Menlo,monospace;background:var(--bg);border:1.5px dashed var(--ink);border-radius:10px;padding:12px;word-break:break-all;font-size:15px;margin:10px 0}
+.match{border:1.5px solid var(--ink);border-radius:14px;padding:16px;margin-top:14px;box-shadow:4px 4px 0 var(--sun)}
+.match h3{font-size:20px;margin-bottom:2px}
+.match p{margin:2px 0;color:var(--muted);font-size:15px}
+.match .line{margin-top:10px;font-size:16px;color:var(--ink)}
+footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
+[hidden]{display:none!important}
+@media(max-width:760px){
+  body{font-size:16px}
+  .hero{grid-template-columns:1fr;gap:34px;padding-top:12px}
+  .steps{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  .pay{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .price{display:block;margin:10px 0 0}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Campus<span>Link</span></div>
+    <button class="linkbtn" id="btnHave">Already joined? Check my matches</button>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<div id="viewHome">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <h1>Swap skills with students in your own college.</h1>
+        <p class="sub">Tell us what you can teach and what you need to learn. When another student in your college needs your skill and has the one you need, we match you.</p>
+        <button class="btn" id="btnJoin">Join for ₹99</button><span class="price">One-time. Lifetime access.</span>
+      </div>
+      <div class="swap" aria-hidden="true">
+        <div class="pcard">
+          <small>You</small>
+          <span class="tag give">I teach: video editing</span><br>
+          <span class="tag get">I need: Python</span>
+        </div>
+        <div class="arrows">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#14213d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h12l-3-3M17 17H5l3 3"/></svg>
+        </div>
+        <div class="pcard">
+          <small>A student in your college</small>
+          <span class="tag give">I teach: Python</span><br>
+          <span class="tag get">I need: video editing</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="block">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><h3>Pay and register</h3><p>Pay ₹99 on PhonePe, then fill in your college, branch, section, what you can help with and what you need.</p></li>
+        <li><h3>We confirm your payment</h3><p>We check your payment reference and unlock your account. This can take a few hours.</p></li>
+        <li><h3>See your matches</h3><p>Open the site with your access code. You see students who need your skill and offer yours, only from your college.</p></li>
+      </ol>
+    </section>
+  </div>
+</div>
+
+<!-- JOIN -->
+<div id="viewJoin" hidden>
+  <div class="wrap" style="padding-bottom:40px">
+    <div class="panel">
+      <h2 style="font-size:32px;margin-bottom:6px">Join CampusLink</h2>
+      <p style="margin:0 0 20px;color:var(--muted)">Two quick steps: pay, then fill in your details.</p>
+
+      <div class="pay">
+        <div class="qr" id="qrBox">
+          <img src="phonepe-qr.png" alt="PhonePe QR code to pay ₹99" id="qrImg">
+        </div>
+        <div>
+          <b style="font-size:19px">Step 1: Pay ₹99 on PhonePe</b>
+          <p style="margin:6px 0 0;color:var(--muted);font-size:15px">Scan the QR with any UPI app. Then copy the transaction ID or UTR number from the payment screen. You need it below.</p>
+        </div>
+      </div>
+
+      <b style="font-size:19px">Step 2: Your details</b>
+      <form id="joinForm" novalidate>
+        <label for="name">Full name</label>
+        <input id="name" autocomplete="name" required maxlength="80">
+
+        <label for="college">College name</label>
+        <input id="college" required maxlength="120" placeholder="Write it fully, e.g. Kakatiya Institute of Technology">
+
+        <div class="row">
+          <div><label for="branch">Branch</label><input id="branch" required maxlength="60" placeholder="e.g. CSE"></div>
+          <div><label for="section">Section</label><input id="section" required maxlength="20" placeholder="e.g. A"></div>
+        </div>
+
+        <label for="skills">Skills you can help with <span class="hint">(separate with commas)</span></label>
+        <textarea id="skills" rows="2" required placeholder="video editing, canva, excel"></textarea>
+
+        <label for="needs">Skills you need from others <span class="hint">(separate with commas)</span></label>
+        <textarea id="needs" rows="2" required placeholder="python, public speaking"></textarea>
+
+        <label for="utr">Payment reference (UTR / transaction ID)</label>
+        <input id="utr" required maxlength="40" autocomplete="off" placeholder="From your PhonePe payment screen">
+
+        <button class="btn" id="btnSubmit" type="submit" style="margin-top:22px;width:100%">Register</button>
+        <div class="msg err" id="joinErr" hidden></div>
+      </form>
+      <p style="text-align:center;margin:18px 0 0"><button class="linkbtn" id="btnBack1">Back</button></p>
+    </div>
+  </div>
+</div>
+
+<!-- STATUS / MATCHES -->
+<div id="viewStatus" hidden>
+  <div class="wrap" style="padding-bottom:40px">
+    <div class="panel">
+      <div id="lookup">
+        <h2 style="font-size:30px;margin-bottom:8px">Check my matches</h2>
+        <label for="tokenIn">Your access code</label>
+        <input id="tokenIn" autocomplete="off" placeholder="Paste the code you got after registering">
+        <button class="btn" id="btnLookup" style="margin-top:16px;width:100%">Check</button>
+      </div>
+      <div id="result" hidden></div>
+      <div class="msg err" id="statusErr" hidden></div>
+      <p style="text-align:center;margin:18px 0 0"><button class="linkbtn" id="btnBack2">Back to home</button></p>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">CampusLink · Built by a student, for students.</div>
+</footer>
+
+<script>
+/* ====== SETTINGS ====== */
+const SUPABASE_URL = "https://gtjphqestjwrmlysrhpt.supabase.co";
+const SUPABASE_KEY = "sb_publishable_9bZRIGXfx2qhHOto_Kwa9A_mFZAE7gw"; // publishable key: safe for browsers
+/* ====================== */
+
+const $ = id => document.getElementById(id);
+const views = ["viewHome","viewJoin","viewStatus"];
+function show(v){ views.forEach(x => $(x).hidden = (x !== v)); window.scrollTo(0,0); }
+
+async function rpc(fn, body){
+  const res = await fetch(SUPABASE_URL + "/rest/v1/rpc/" + fn, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "apikey": SUPABASE_KEY },
+    body: JSON.stringify(body)
+  });
+  let data = null;
+  try { data = await res.json(); } catch(e) {}
+  if (!res.ok) throw new Error((data && data.message) || "Something went wrong. Please try again.");
+  return data;
+}
+
+function showErr(el, text){ el.textContent = text; el.hidden = false; }
+function el(tag, cls, text){ const e = document.createElement(tag); if(cls) e.className = cls; if(text !== undefined) e.textContent = text; return e; }
+
+/* navigation */
+$("btnJoin").onclick = () => show("viewJoin");
+$("btnBack1").onclick = () => show("viewHome");
+$("btnBack2").onclick = () => show("viewHome");
+$("btnHave").onclick = () => {
+  $("result").hidden = true; $("lookup").hidden = false; $("statusErr").hidden = true;
+  $("tokenIn").value = localStorage.getItem("campuslink_token") || "";
+  show("viewStatus");
+};
+
+/* QR fallback if image file is missing */
+$("qrImg").onerror = () => { $("qrBox").textContent = "Add phonepe-qr.png to the site folder"; };
+
+/* register */
+$("joinForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  $("joinErr").hidden = true;
+  const btn = $("btnSubmit");
+  btn.disabled = true; btn.textContent = "Registering…";
+  try {
+    const token = await rpc("register", {
+      p_name: $("name").value, p_college: $("college").value, p_branch: $("branch").value,
+      p_section: $("section").value, p_skills: $("skills").value, p_needs: $("needs").value, p_utr: $("utr").value
+    });
+    try { localStorage.setItem("campuslink_token", token); } catch(_) {}
+    $("joinForm").reset();
+    await loadStatus(token, true);
+    show("viewStatus");
+  } catch(err) {
+    showErr($("joinErr"), err.message);
+  } finally {
+    btn.disabled = false; btn.textContent = "Register";
+  }
+});
+
+/* lookup */
+$("btnLookup").onclick = async () => {
+  const t = $("tokenIn").value.trim();
+  $("statusErr").hidden = true;
+  if (!t) return showErr($("statusErr"), "Paste your access code first.");
+  const b = $("btnLookup"); b.disabled = true; b.textContent = "Checking…";
+  try { await loadStatus(t, false); }
+  catch(err){ showErr($("statusErr"), err.message.includes("uuid") ? "That access code looks wrong. Copy it again." : err.message); }
+  finally { b.disabled = false; b.textContent = "Check"; }
+};
+
+async function loadStatus(token, justRegistered){
+  const data = await rpc("check_matches", { p_token: token });
+  const box = $("result");
+  box.replaceChildren();
+  $("statusErr").hidden = true;
+  if (!data.found) throw new Error("No registration found for this code.");
+  $("lookup").hidden = true; box.hidden = false;
+
+  if (justRegistered) {
+    box.append(el("h2", "", "You're registered, " + data.name.split(" ")[0] + "!"));
+    box.append(el("p", "", "Save this access code. It is the only way to see your matches later."));
+    box.append(el("div", "code", token));
+    const copy = el("button", "btn ghost", "Copy code");
+    copy.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(token); copy.textContent = "Copied"; };
+    box.append(copy);
+  } else {
+    box.append(el("h2", "", "Hi " + data.name.split(" ")[0]));
+  }
+
+  if (!data.paid) {
+    box.append(el("div", "msg ok", "Payment is being checked. Once it is confirmed, your matches appear here. Come back with your access code in a few hours."));
+    const re = el("button", "btn ghost", "Check again"); re.style.marginTop = "14px";
+    re.onclick = () => loadStatus(token, false).catch(e => showErr($("statusErr"), e.message));
+    box.append(re);
+    return;
+  }
+
+  box.append(el("h3", "", data.matches.length ? "Your matches (" + data.matches.length + ")" : "No matches yet"));
+  box.lastChild.style.margin = "22px 0 0";
+  if (!data.matches.length) {
+    box.append(el("p", "", "Nobody in your college fits both sides yet. New students join often, so check again soon."));
+  }
+  data.matches.forEach(m => {
+    const c = el("div", "match");
+    c.append(el("h3", "", m.name));
+    c.append(el("p", "", m.college + " · " + m.branch + " · Section " + m.section));
+    c.append(el("div", "line", "They can teach you: " + m.they_offer.join(", ")));
+    c.append(el("div", "line", "They need from you: " + m.they_need.join(", ")));
+    box.append(c);
+  });
+  const re = el("button", "btn ghost", "Refresh matches"); re.style.marginTop = "18px";
+  re.onclick = () => loadStatus(token, false).catch(e => showErr($("statusErr"), e.message));
+  box.append(re);
+}
+</script>
+</body>
+</html>
