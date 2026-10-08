@@ -410,7 +410,7 @@ updateBtn.onclick = async () => {
   data.matches.forEach(m => {
     const c = el("div", "match");
     c.append(el("h3", "", m.name));
-    c.append(el("p", "", m.college + " · " + m.branch + " · Section " + m.section));
+    c.append(el("p", "", m.college + " · " + m.branch + " · " + m.year + " · Section " + m.section));
     c.append(el("div", "line", "They can teach you: " + m.they_offer.join(", ")));
     c.append(el("div", "line", "They need from you: " + m.they_need.join(", ")));
     box.append(c);
