@@ -12,7 +12,7 @@
 :root{
   --ink:#14213d;--muted:#5b6478;--bg:#f4f7fb;--card:#ffffff;
   --blue:#2b59ff;--blue-dark:#1d3fcc;--sun:#ffb703;--line:#dde3ee;
-  --ok:#0f8a5f;--err:#c0302b;
+  --ok:#0f8a5f;--err:#c0302b;--green:#e4f6ee;--yellow:#fff8e1;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
@@ -78,8 +78,17 @@ input:focus,textarea:focus{border-color:var(--blue);outline:none}
 .photo-preview img{width:100%;height:100%;object-fit:cover}
 .photo-info{font-size:14px;color:var(--muted)}
 
+/* section labels */
+.section-label{display:flex;align-items:center;gap:10px;margin:24px 0 10px}
+.section-label h3{font-size:18px;margin:0}
+.section-label .pill{border-radius:999px;padding:3px 12px;font-size:13px;font-weight:700}
+.pill.mutual{background:#e3ebff;color:var(--blue-dark)}
+.pill.oneway{background:#fff1cc;color:#8a5a00}
+.section-desc{font-size:14px;color:var(--muted);margin:0 0 12px}
+
 /* match cards */
-.match{border:1.5px solid var(--ink);border-radius:14px;padding:16px;margin-top:14px;box-shadow:4px 4px 0 var(--sun)}
+.match{border:1.5px solid var(--ink);border-radius:14px;padding:16px;margin-top:10px;box-shadow:4px 4px 0 var(--sun)}
+.match.oneway-card{box-shadow:4px 4px 0 #ffb703;border-color:var(--ink);opacity:.95}
 .match-top{display:flex;gap:14px;align-items:center;margin-bottom:10px}
 .avatar{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid var(--line);flex-shrink:0;background:var(--bg)}
 .avatar-placeholder{width:58px;height:58px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;color:#fff;flex-shrink:0}
@@ -88,7 +97,7 @@ input:focus,textarea:focus{border-color:var(--blue);outline:none}
 .match .line{margin-top:8px;font-size:15px;color:var(--ink)}
 .unread-dot{display:inline-block;background:#e53935;color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:1px 8px;margin-left:8px;vertical-align:middle}
 
-/* chat / thread */
+/* chat */
 .chat-wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;height:calc(100vh - 120px)}
 .chat-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--card);border-bottom:1px solid var(--line);border-radius:18px 18px 0 0}
 .chat-header .avatar,.chat-header .avatar-placeholder{width:42px;height:42px;font-size:16px}
@@ -133,7 +142,7 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
     <div class="hero">
       <div>
         <h1>Swap skills with students in your own college.</h1>
-        <p class="sub">Tell us what you can teach and what you need. When another student in your college matches both sides, we connect you.</p>
+        <p class="sub">Tell us what you can teach and what you need. We match you with students in your college who have what you need.</p>
         <button class="btn" id="btnJoin">Join for ₹99</button>
         <span class="price">One-time · Lifetime access</span>
       </div>
@@ -158,7 +167,7 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
       <ol class="steps">
         <li><h3>Pay and register</h3><p>Pay ₹99 on PhonePe, then fill your college, branch, section, skills you offer and skills you need.</p></li>
         <li><h3>We confirm your payment</h3><p>We check your payment reference and unlock your profile. Usually done within a few hours.</p></li>
-        <li><h3>Message your matches</h3><p>See students from your college who need what you offer and offer what you need — then message them directly.</p></li>
+        <li><h3>Message your matches</h3><p>See students from your college who have skills you need — then message them directly.</p></li>
       </ol>
     </section>
   </div>
@@ -187,7 +196,7 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
           <div class="photo-preview" id="photoPreview"><span>No photo</span></div>
           <div>
             <input type="file" id="photoFile" accept="image/*" style="width:auto;padding:6px 0">
-            <div class="photo-info" id="photoInfo">Max 5 MB. We compress it to under 100 KB in your browser before uploading.</div>
+            <div class="photo-info" id="photoInfo">Max 5 MB. Compressed to under 100 KB in your browser before uploading.</div>
           </div>
         </div>
 
@@ -236,7 +245,7 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
   </div>
 </div>
 
-<!-- CHAT THREAD -->
+<!-- CHAT -->
 <div id="viewChat" hidden>
   <div class="wrap" style="padding:20px 20px 30px">
     <div class="chat-wrap">
@@ -255,16 +264,12 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
 <footer><div class="wrap">CampusLink · Built by a student, for students.</div></footer>
 
 <script>
-/* ── CONFIG ── */
 const SUPABASE_URL = "https://gtjphqestjwrmlysrhpt.supabase.co";
 const SUPABASE_KEY = "sb_publishable_9bZRIGXfx2qhHOto_Kwa9A_mFZAE7gw";
 
-/* ── STATE ── */
 let myToken = null;
-let chatWith = null; // { token, name, photo_url }
 let pollTimer = null;
 
-/* ── UTILS ── */
 const $ = id => document.getElementById(id);
 const views = ["viewHome","viewJoin","viewMatches","viewChat"];
 
@@ -316,12 +321,8 @@ async function compressImage(file, maxKB=100){
         const tryCompress = () => {
           canvas.toBlob(blob => {
             if(!blob) return reject(new Error("Could not compress image."));
-            if(blob.size <= maxKB * 1024 || quality < 0.2){
-              resolve(blob);
-            } else {
-              quality -= 0.1;
-              tryCompress();
-            }
+            if(blob.size <= maxKB * 1024 || quality < 0.2){ resolve(blob); }
+            else{ quality -= 0.1; tryCompress(); }
           }, "image/jpeg", quality);
         };
         tryCompress();
@@ -341,10 +342,7 @@ async function uploadPhoto(blob, token){
     headers:{"apikey": SUPABASE_KEY, "Content-Type":"image/jpeg"},
     body: blob
   });
-  if(!res.ok){
-    const t = await res.text();
-    throw new Error("Photo upload failed: " + t);
-  }
+  if(!res.ok) throw new Error("Photo upload failed.");
   return SUPABASE_URL + "/storage/v1/object/public/profiles/" + path;
 }
 
@@ -355,15 +353,12 @@ $("photoFile").addEventListener("change", async () => {
   $("photoInfo").textContent = "Compressing…";
   try{
     const blob = await compressImage(file);
-    const url = URL.createObjectURL(blob);
-    $("photoPreview").innerHTML = `<img src="${url}" alt="preview">`;
+    $("photoPreview").innerHTML = `<img src="${URL.createObjectURL(blob)}" alt="preview">`;
     $("photoInfo").textContent = `Compressed to ${Math.round(blob.size/1024)} KB. Looks good!`;
-  } catch(e){
-    $("photoInfo").textContent = "Could not compress: " + e.message;
-  }
+  } catch(e){ $("photoInfo").textContent = "Could not compress: " + e.message; }
 });
 
-/* ── NAVIGATION ── */
+/* ── NAV ── */
 $("brandHome").onclick = () => show("viewHome");
 $("btnJoin").onclick   = () => show("viewJoin");
 $("btnBack1").onclick  = () => show("viewHome");
@@ -385,9 +380,7 @@ $("joinForm").addEventListener("submit", async e => {
   $("joinErr").hidden = true;
   const btn = $("btnSubmit");
   btn.disabled = true; btn.textContent = "Registering…";
-
   try{
-    // 1: register without photo to get token
     const token = await rpc("register", {
       p_name:$("name").value, p_college:$("college").value,
       p_branch:$("branch").value, p_section:$("section").value,
@@ -395,22 +388,12 @@ $("joinForm").addEventListener("submit", async e => {
       p_utr:$("utr").value, p_photo_url:""
     });
 
-    // 2: upload photo if chosen
     const file = $("photoFile").files[0];
     if(file){
       btn.textContent = "Uploading photo…";
       try{
         const blob = await compressImage(file);
-        const photoUrl = await uploadPhoto(blob, token);
-        // update photo_url
-        await rpc("register", {
-          p_name:$("name").value, p_college:$("college").value,
-          p_branch:$("branch").value, p_section:$("section").value,
-          p_skills:$("skills").value, p_needs:$("needs").value,
-          p_utr:$("utr").value + "_photo_update_ignore",
-          p_photo_url: photoUrl
-        }).catch(()=>{}); // ignore duplicate UTR error on second call
-        // use a dedicated update path via storage only; photo saved above
+        await uploadPhoto(blob, token);
       } catch(pe){ console.warn("Photo upload failed:", pe.message); }
     }
 
@@ -418,22 +401,19 @@ $("joinForm").addEventListener("submit", async e => {
     $("joinForm").reset();
     $("photoPreview").innerHTML = "<span>No photo</span>";
 
-    // show success
     $("matchResult").hidden = false;
     $("lookupBox").hidden = true;
     $("matchResult").replaceChildren();
-    const h = el("h2","","You're registered!");
+    const h = el("h2","","You're registered! 🎉");
     h.style.marginBottom = "8px";
     $("matchResult").append(h);
-    $("matchResult").append(el("p","","Save your access code. It is the only way to check your matches."));
-    const codeBox = el("div","code", token);
-    $("matchResult").append(codeBox);
+    $("matchResult").append(el("p","","Save your access code below. It is the only way to check your matches."));
+    $("matchResult").append(el("div","code", token));
     const copy = el("button","btn ghost sm","Copy code");
     copy.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(token); copy.textContent = "Copied ✓"; };
     $("matchResult").append(copy);
-    $("matchResult").append(el("div","msg ok","Payment is being verified. Your matches appear once confirmed. Come back with your code."));
+    $("matchResult").append(el("div","msg ok","Payment is being verified. Your matches appear once confirmed. Come back with your code in a few hours."));
     show("viewMatches");
-
   } catch(err){
     $("joinErr").textContent = err.message;
     $("joinErr").hidden = false;
@@ -455,6 +435,48 @@ $("btnLookup").onclick = async () => {
 
 function showStatusErr(msg){ $("statusErr").textContent = msg; $("statusErr").hidden = false; }
 
+/* ── MATCH CARD BUILDER ── */
+function buildMatchCard(m, myTok, isOneway){
+  const card = el("div", "match" + (isOneway ? " oneway-card" : ""));
+
+  const top = el("div","match-top");
+  if(m.photo_url){
+    const img = document.createElement("img");
+    img.className = "avatar"; img.src = m.photo_url; img.alt = m.name;
+    img.onerror = () => img.replaceWith(initAvatar(m.name));
+    top.append(img);
+  } else { top.append(initAvatar(m.name)); }
+
+  const info = el("div");
+  const nameRow = el("h3","", m.name);
+  if(m.unread > 0){ nameRow.append(" "); nameRow.append(el("span","unread-dot", m.unread + " new")); }
+  info.append(nameRow);
+  info.append(el("p","", m.college + " · " + m.branch + " · Sec " + m.section));
+  top.append(info);
+  card.append(top);
+
+  if(m.they_offer && m.they_offer.length)
+    card.append(el("div","line","They can teach you: " + m.they_offer.join(", ")));
+  if(m.they_need && m.they_need.length)
+    card.append(el("div","line","They need from you: " + m.they_need.join(", ")));
+  if(isOneway && (!m.they_need || !m.they_need.length))
+    card.append(el("div","line" ,"They haven't listed a skill you offer — but you can still reach out!"));
+
+  const msgBtn = el("button","btn sm","💬 Message");
+  msgBtn.style.marginTop = "12px";
+  msgBtn.onclick = () => openChat(myTok, m);
+  card.append(msgBtn);
+
+  return card;
+}
+
+function initAvatar(name){
+  const d = el("div","avatar-placeholder");
+  d.textContent = (name || "?")[0].toUpperCase();
+  return d;
+}
+
+/* ── LOAD MATCHES ── */
 async function loadMatches(token){
   if(!token) return;
   const data = await rpc("check_matches", { p_token: token });
@@ -465,18 +487,13 @@ async function loadMatches(token){
   box.hidden = false;
   box.replaceChildren();
 
-  // global unread badge
   const unread = data.total_unread || 0;
-  if(unread > 0){
-    $("globalBadge").textContent = unread; $("globalBadge").hidden = false;
-  } else { $("globalBadge").hidden = true; }
+  if(unread > 0){ $("globalBadge").textContent = unread; $("globalBadge").hidden = false; }
+  else { $("globalBadge").hidden = true; }
 
-  const greeting = el("h2","", "Hi " + data.name.split(" ")[0] + (unread > 0 ? "" : ""));
+  const greeting = el("h2","", "Hi " + data.name.split(" ")[0]);
   greeting.style.marginBottom = "6px";
-  if(unread > 0){
-    const dot = el("span","unread-dot", unread + " new");
-    greeting.append(" ", dot);
-  }
+  if(unread > 0){ greeting.append(" "); greeting.append(el("span","unread-dot", unread + " new")); }
   box.append(greeting);
 
   if(!data.paid){
@@ -487,65 +504,46 @@ async function loadMatches(token){
     return;
   }
 
-  const matchList = data.matches || [];
-  const ht = el("h3","", matchList.length ? "Your matches (" + matchList.length + ")" : "No matches yet");
-  ht.style.margin = "20px 0 0";
-  box.append(ht);
+  const mutual = data.matches || [];
+  const oneway = data.oneway || [];
 
-  if(!matchList.length){
-    box.append(el("p","","Nobody in your college has filled both sides yet. Check again soon."));
+  /* ── MUTUAL SECTION ── */
+  const mutLabel = el("div","section-label");
+  const mutH = el("h3","","Mutual matches");
+  const mutPill = el("span","pill mutual","Skill swap");
+  mutLabel.append(mutH, mutPill);
+  box.append(mutLabel);
+  box.append(el("p","section-desc","Both of you have what the other needs — perfect for a skill swap."));
+
+  if(mutual.length){
+    mutual.forEach(m => box.append(buildMatchCard(m, token, false)));
+  } else {
+    box.append(el("p","","No mutual matches yet. Check the section below."));
   }
 
-  matchList.forEach(m => {
-    const card = el("div","match");
+  /* ── ONE-WAY SECTION ── */
+  const owLabel = el("div","section-label");
+  owLabel.style.marginTop = "28px";
+  const owH = el("h3","","They have your skill");
+  const owPill = el("span","pill oneway","One-way");
+  owLabel.append(owH, owPill);
+  box.append(owLabel);
+  box.append(el("p","section-desc","These students have a skill you need. They may not need yours — but you can still message and connect."));
 
-    // top row: avatar + name
-    const top = el("div","match-top");
-    if(m.photo_url){
-      const img = document.createElement("img");
-      img.className = "avatar"; img.src = m.photo_url; img.alt = m.name;
-      img.onerror = () => img.replaceWith(initAvatar(m.name));
-      top.append(img);
-    } else { top.append(initAvatar(m.name)); }
+  if(oneway.length){
+    oneway.forEach(m => box.append(buildMatchCard(m, token, true)));
+  } else {
+    box.append(el("p","","No one-way matches found either. More matches appear as new students join."));
+  }
 
-    const info = el("div");
-    const nameRow = el("h3","", m.name);
-    if(m.unread > 0){
-      nameRow.append(" "); nameRow.append(el("span","unread-dot", m.unread + " new"));
-    }
-    info.append(nameRow);
-    info.append(el("p","", m.college + " · " + m.branch + " · Sec " + m.section));
-    top.append(info);
-    card.append(top);
-
-    card.append(el("div","line","They can teach: " + m.they_offer.join(", ")));
-    card.append(el("div","line","They need from you: " + m.they_need.join(", ")));
-
-    const msgBtn = el("button","btn sm","💬 Message"); 
-    msgBtn.style.marginTop = "12px";
-    msgBtn.onclick = () => openChat(token, m);
-    card.append(msgBtn);
-
-    box.append(card);
-  });
-
-  const re = el("button","btn ghost","Refresh"); re.style.marginTop = "18px";
+  const re = el("button","btn ghost","Refresh"); re.style.marginTop = "22px";
   re.onclick = () => loadMatches(token).catch(e => showStatusErr(e.message));
   box.append(re);
 }
 
-function initAvatar(name){
-  const d = el("div","avatar-placeholder");
-  d.textContent = (name || "?")[0].toUpperCase();
-  return d;
-}
-
 /* ── CHAT ── */
 async function openChat(myTok, other){
-  chatWith = other;
   show("viewChat");
-
-  // header
   const hdr = $("chatHeader");
   hdr.replaceChildren();
   if(other.photo_url){
@@ -560,12 +558,9 @@ async function openChat(myTok, other){
   hdr.append(hn);
 
   await fetchThread(myTok, other.token);
-
-  // poll every 8 seconds for new messages
   clearInterval(pollTimer);
   pollTimer = setInterval(() => fetchThread(myTok, other.token, true), 8000);
 
-  // send button
   $("btnSend").onclick = () => sendMsg(myTok, other.token);
   $("chatText").onkeydown = e => {
     if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); sendMsg(myTok, other.token); }
@@ -578,18 +573,16 @@ async function fetchThread(myTok, otherTok, silent=false){
     const body = $("chatBody");
     const atBottom = body.scrollHeight - body.scrollTop - body.clientHeight < 60;
     body.replaceChildren();
-    if(msgs.length === 0){
+    if(!msgs.length){
       const ph = el("p","","No messages yet. Say hi!");
       ph.style.cssText = "text-align:center;color:var(--muted);margin:auto;padding:40px 0";
       body.append(ph);
     } else {
       msgs.forEach(m => {
         const wrap = el("div");
-        wrap.style.display = "flex";
-        wrap.style.flexDirection = "column";
+        wrap.style.cssText = "display:flex;flex-direction:column";
         const bub = el("div","bubble " + (m.from_me ? "me" : "them"), m.body);
-        const time = el("div","bubble-time", m.time);
-        bub.append(time);
+        bub.append(el("div","bubble-time", m.time));
         wrap.append(bub);
         body.append(wrap);
       });
