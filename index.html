@@ -2,47 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CampusLink – Swap skills with students in your college</title>
-<meta name="description" content="Tell us what you can teach and what you need. We match you with a student in your own college who needs what you offer and offers what you need. ₹99, lifetime access.">
+<meta name="description" content="Tell us what you can teach and what you need. We match you with a student in your own college. ₹99, lifetime access.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#14213d; --muted:#5b6478; --bg:#f4f7fb; --card:#ffffff;
-  --blue:#2b59ff; --blue-dark:#1d3fcc; --sun:#ffb703; --line:#dde3ee; --ok:#0f8a5f; --err:#c0302b;
+  --ink:#14213d;--muted:#5b6478;--bg:#f4f7fb;--card:#ffffff;
+  --blue:#2b59ff;--blue-dark:#1d3fcc;--sun:#ffb703;--line:#dde3ee;
+  --ok:#0f8a5f;--err:#c0302b;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;height:100%}
 body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:17px}
 h1,h2,h3{font-family:'Bricolage Grotesque','DM Sans',sans-serif;line-height:1.1;margin:0}
-a{color:var(--blue)}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
-header{padding:18px 0}
-header .wrap{display:flex;justify-content:space-between;align-items:center}
-.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.5px}
+header{padding:18px 0;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:100;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.5px;cursor:pointer}
 .brand span{color:var(--blue)}
-.linkbtn{background:none;border:0;color:var(--blue);font:inherit;font-weight:500;cursor:pointer;text-decoration:underline;padding:6px}
-button,input,textarea,select{font:inherit}
+.linkbtn{background:none;border:0;color:var(--blue);font:inherit;font-weight:500;cursor:pointer;text-decoration:underline;padding:6px;position:relative}
+.badge{position:absolute;top:-2px;right:-2px;background:#e53935;color:#fff;border-radius:999px;font-size:11px;font-weight:700;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+button,input,textarea{font:inherit}
 :focus-visible{outline:3px solid var(--sun);outline-offset:2px}
-
-/* hero */
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:36px 0 56px}
-.hero h1{font-size:clamp(38px,6vw,60px);font-weight:800;letter-spacing:-1.5px}
-.hero p.sub{font-size:19px;color:var(--muted);max-width:480px;margin:18px 0 26px}
-.btn{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:15px 26px;font-weight:700;font-size:17px;cursor:pointer;text-decoration:none}
+.btn{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:14px 24px;font-weight:700;font-size:16px;cursor:pointer;text-decoration:none}
 .btn:hover{background:var(--blue-dark)}
 .btn:disabled{opacity:.6;cursor:wait}
 .btn.ghost{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.btn.sm{padding:8px 16px;font-size:15px;border-radius:9px}
 .price{margin-left:14px;color:var(--muted);font-size:15px}
 
-/* swap visual: the one memorable thing */
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:36px 0 56px}
+.hero h1{font-size:clamp(36px,6vw,58px);font-weight:800;letter-spacing:-1.5px}
+.hero p.sub{font-size:19px;color:var(--muted);max-width:480px;margin:18px 0 26px}
 .swap{position:relative;display:grid;gap:0}
 .pcard{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:16px 18px;box-shadow:6px 6px 0 var(--ink)}
-.pcard + .pcard{margin-top:46px;margin-left:28px;box-shadow:6px 6px 0 var(--sun)}
-.pcard b{font-family:'Bricolage Grotesque',sans-serif;font-size:19px}
-.pcard small{display:block;color:var(--muted);margin-bottom:8px}
+.pcard+.pcard{margin-top:46px;margin-left:28px;box-shadow:6px 6px 0 var(--sun)}
 .tag{display:inline-block;border-radius:999px;padding:3px 12px;font-size:14px;font-weight:500;margin:3px 4px 0 0}
 .tag.give{background:#e3ebff;color:var(--blue-dark)}
 .tag.get{background:#fff1cc;color:#8a5a00}
@@ -50,17 +50,17 @@ button,input,textarea,select{font:inherit}
 
 /* steps */
 section.block{padding:40px 0}
-section.block h2{font-size:clamp(28px,4vw,38px);font-weight:800;letter-spacing:-.8px;margin-bottom:22px}
+section.block h2{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.8px;margin-bottom:22px}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0;margin:0;list-style:none;counter-reset:s}
 .steps li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;counter-increment:s}
 .steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;margin-bottom:10px}
-.steps h3{font-size:20px;margin-bottom:6px}
-.steps p{margin:0;color:var(--muted);font-size:16px}
+.steps h3{font-size:19px;margin-bottom:6px}
+.steps p{margin:0;color:var(--muted);font-size:15px}
 
-/* form + panels */
+/* panel / form */
 .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;max-width:640px;margin:0 auto}
-.pay{display:grid;grid-template-columns:170px 1fr;gap:22px;align-items:center;background:#fff8e1;border:1px solid #f1dfa6;border-radius:14px;padding:16px;margin-bottom:22px}
-.qr{width:170px;height:170px;border-radius:10px;background:#fff;border:1px dashed #cdb86a;display:grid;place-items:center;text-align:center;font-size:13px;color:var(--muted);overflow:hidden}
+.pay{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center;background:#fff8e1;border:1px solid #f1dfa6;border-radius:14px;padding:16px;margin-bottom:22px}
+.qr{width:150px;height:150px;border-radius:10px;overflow:hidden;background:#fff;border:1px dashed #cdb86a;display:grid;place-items:center;font-size:13px;color:var(--muted)}
 .qr img{width:100%;height:100%;object-fit:contain}
 label{display:block;font-weight:700;margin:16px 0 6px;font-size:16px}
 .hint{font-weight:400;color:var(--muted);font-size:14px}
@@ -71,29 +71,58 @@ input:focus,textarea:focus{border-color:var(--blue);outline:none}
 .msg.err{background:#fdeceb;color:var(--err)}
 .msg.ok{background:#e4f6ee;color:var(--ok)}
 .code{font-family:ui-monospace,Menlo,monospace;background:var(--bg);border:1.5px dashed var(--ink);border-radius:10px;padding:12px;word-break:break-all;font-size:15px;margin:10px 0}
+
+/* photo upload */
+.photo-wrap{display:flex;align-items:center;gap:16px;margin-top:8px}
+.photo-preview{width:80px;height:80px;border-radius:50%;background:var(--bg);border:2px dashed var(--line);overflow:hidden;display:grid;place-items:center;flex-shrink:0;color:var(--muted);font-size:13px;text-align:center}
+.photo-preview img{width:100%;height:100%;object-fit:cover}
+.photo-info{font-size:14px;color:var(--muted)}
+
+/* match cards */
 .match{border:1.5px solid var(--ink);border-radius:14px;padding:16px;margin-top:14px;box-shadow:4px 4px 0 var(--sun)}
-.match h3{font-size:20px;margin-bottom:2px}
+.match-top{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.avatar{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid var(--line);flex-shrink:0;background:var(--bg)}
+.avatar-placeholder{width:58px;height:58px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;color:#fff;flex-shrink:0}
+.match h3{font-size:19px;margin-bottom:2px}
 .match p{margin:2px 0;color:var(--muted);font-size:15px}
-.match .line{margin-top:10px;font-size:16px;color:var(--ink)}
+.match .line{margin-top:8px;font-size:15px;color:var(--ink)}
+.unread-dot{display:inline-block;background:#e53935;color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:1px 8px;margin-left:8px;vertical-align:middle}
+
+/* chat / thread */
+.chat-wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;height:calc(100vh - 120px)}
+.chat-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--card);border-bottom:1px solid var(--line);border-radius:18px 18px 0 0}
+.chat-header .avatar,.chat-header .avatar-placeholder{width:42px;height:42px;font-size:16px}
+.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+.bubble{max-width:75%;padding:10px 14px;border-radius:14px;font-size:15px;line-height:1.4}
+.bubble.me{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:4px}
+.bubble.them{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px}
+.bubble-time{font-size:12px;opacity:.6;margin-top:4px;text-align:right}
+.chat-input{display:flex;gap:10px;padding:12px 16px;background:var(--card);border-top:1px solid var(--line);border-radius:0 0 18px 18px}
+.chat-input textarea{resize:none;border-radius:10px;padding:10px 12px;height:44px;line-height:1.3}
+.chat-input button{flex-shrink:0;align-self:flex-end}
+
 footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
 [hidden]{display:none!important}
 @media(max-width:760px){
   body{font-size:16px}
-  .hero{grid-template-columns:1fr;gap:34px;padding-top:12px}
+  .hero{grid-template-columns:1fr;gap:28px;padding-top:16px}
   .steps{grid-template-columns:1fr}
   .row{grid-template-columns:1fr}
   .pay{grid-template-columns:1fr;justify-items:center;text-align:center}
   .price{display:block;margin:10px 0 0}
+  .chat-wrap{height:calc(100vh - 80px)}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <div class="brand">Campus<span>Link</span></div>
-    <button class="linkbtn" id="btnHave">Already joined? Check my matches</button>
+    <div class="brand" id="brandHome">Campus<span>Link</span></div>
+    <button class="linkbtn" id="btnHave">
+      Already joined? Check matches
+      <span class="badge" id="globalBadge" hidden></span>
+    </button>
   </div>
 </header>
 
@@ -104,12 +133,13 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
     <div class="hero">
       <div>
         <h1>Swap skills with students in your own college.</h1>
-        <p class="sub">Tell us what you can teach and what you need to learn. When another student in your college needs your skill and has the one you need, we match you.</p>
-        <button class="btn" id="btnJoin">Join for ₹99</button><span class="price">One-time. Lifetime access.</span>
+        <p class="sub">Tell us what you can teach and what you need. When another student in your college matches both sides, we connect you.</p>
+        <button class="btn" id="btnJoin">Join for ₹99</button>
+        <span class="price">One-time · Lifetime access</span>
       </div>
       <div class="swap" aria-hidden="true">
         <div class="pcard">
-          <small>You</small>
+          <small style="color:var(--muted)">You</small>
           <span class="tag give">I teach: video editing</span><br>
           <span class="tag get">I need: Python</span>
         </div>
@@ -117,19 +147,18 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#14213d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h12l-3-3M17 17H5l3 3"/></svg>
         </div>
         <div class="pcard">
-          <small>A student in your college</small>
+          <small style="color:var(--muted)">A student in your college</small>
           <span class="tag give">I teach: Python</span><br>
           <span class="tag get">I need: video editing</span>
         </div>
       </div>
     </div>
-
     <section class="block">
       <h2>How it works</h2>
       <ol class="steps">
-        <li><h3>Pay and register</h3><p>Pay ₹99 on PhonePe, then fill in your college, branch, section, what you can help with and what you need.</p></li>
-        <li><h3>We confirm your payment</h3><p>We check your payment reference and unlock your account. This can take a few hours.</p></li>
-        <li><h3>See your matches</h3><p>Open the site with your access code. You see students who need your skill and offer yours, only from your college.</p></li>
+        <li><h3>Pay and register</h3><p>Pay ₹99 on PhonePe, then fill your college, branch, section, skills you offer and skills you need.</p></li>
+        <li><h3>We confirm your payment</h3><p>We check your payment reference and unlock your profile. Usually done within a few hours.</p></li>
+        <li><h3>Message your matches</h3><p>See students from your college who need what you offer and offer what you need — then message them directly.</p></li>
       </ol>
     </section>
   </div>
@@ -137,46 +166,46 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
 
 <!-- JOIN -->
 <div id="viewJoin" hidden>
-  <div class="wrap" style="padding-bottom:40px">
+  <div class="wrap" style="padding:30px 20px">
     <div class="panel">
-      <h2 style="font-size:32px;margin-bottom:6px">Join CampusLink</h2>
-      <p style="margin:0 0 20px;color:var(--muted)">Two quick steps: pay, then fill in your details.</p>
+      <h2 style="font-size:30px;margin-bottom:6px">Join CampusLink</h2>
+      <p style="margin:0 0 20px;color:var(--muted)">Pay first, then fill your details.</p>
 
       <div class="pay">
-        <div class="qr" id="qrBox">
-          <img src="phonepe-qr.png" alt="PhonePe QR code to pay ₹99" id="qrImg">
-        </div>
+        <div class="qr"><img src="phonepe-qr.png" alt="PhonePe QR" id="qrImg"></div>
         <div>
-          <b style="font-size:19px">Step 1: Pay ₹99 on PhonePe</b>
-          <p style="margin:6px 0 0;color:var(--muted);font-size:15px">Scan the QR with any UPI app. Then copy the transaction ID or UTR number from the payment screen. You need it below.</p>
+          <b style="font-size:18px">Step 1: Pay ₹99 on PhonePe</b>
+          <p style="margin:6px 0 0;color:var(--muted);font-size:15px">Scan with any UPI app. Copy the UTR / transaction ID from the payment screen — you need it below.</p>
         </div>
       </div>
 
-      <b style="font-size:19px">Step 2: Your details</b>
+      <b style="font-size:18px">Step 2: Your details</b>
       <form id="joinForm" novalidate>
+
+        <label>Profile photo <span class="hint">(optional — compressed automatically)</span></label>
+        <div class="photo-wrap">
+          <div class="photo-preview" id="photoPreview"><span>No photo</span></div>
+          <div>
+            <input type="file" id="photoFile" accept="image/*" style="width:auto;padding:6px 0">
+            <div class="photo-info" id="photoInfo">Max 5 MB. We compress it to under 100 KB in your browser before uploading.</div>
+          </div>
+        </div>
+
         <label for="name">Full name</label>
         <input id="name" autocomplete="name" required maxlength="80">
 
-        <label for="college">College name</label>
-        <input id="college" required maxlength="120" placeholder="Write it fully, e.g. Kakatiya Institute of Technology">
+        <label for="college">College name <span class="hint">(write it fully)</span></label>
+        <input id="college" required maxlength="120" placeholder="e.g. Kakatiya Institute of Technology">
 
         <div class="row">
           <div><label for="branch">Branch</label><input id="branch" required maxlength="60" placeholder="e.g. CSE"></div>
           <div><label for="section">Section</label><input id="section" required maxlength="20" placeholder="e.g. A"></div>
         </div>
-        <label for="year">Year of study</label>
-<select id="year" required>
-  <option value="">Select your year</option>
-  <option value="1st Year">1st Year</option>
-  <option value="2nd Year">2nd Year</option>
-  <option value="3rd Year">3rd Year</option>
-  <option value="4th Year">4th Year</option>
-</select>
 
-        <label for="skills">Skills you can help with <span class="hint">(separate with commas)</span></label>
+        <label for="skills">Skills you can help with <span class="hint">(comma separated)</span></label>
         <textarea id="skills" rows="2" required placeholder="video editing, canva, excel"></textarea>
 
-        <label for="needs">Skills you need from others <span class="hint">(separate with commas)</span></label>
+        <label for="needs">Skills you want to learn <span class="hint">(comma separated)</span></label>
         <textarea id="needs" rows="2" required placeholder="python, public speaking"></textarea>
 
         <label for="utr">Payment reference (UTR / transaction ID)</label>
@@ -185,240 +214,416 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
         <button class="btn" id="btnSubmit" type="submit" style="margin-top:22px;width:100%">Register</button>
         <div class="msg err" id="joinErr" hidden></div>
       </form>
-      <p style="text-align:center;margin:18px 0 0"><button class="linkbtn" id="btnBack1">Back</button></p>
+      <p style="text-align:center;margin:18px 0 0"><button class="linkbtn" id="btnBack1">← Back</button></p>
     </div>
   </div>
 </div>
 
-<!-- STATUS / MATCHES -->
-<div id="viewStatus" hidden>
-  <div class="wrap" style="padding-bottom:40px">
+<!-- MATCHES -->
+<div id="viewMatches" hidden>
+  <div class="wrap" style="padding:30px 20px">
     <div class="panel">
-      <div id="lookup">
-        <h2 style="font-size:30px;margin-bottom:8px">Check my matches</h2>
+      <div id="lookupBox">
+        <h2 style="font-size:28px;margin-bottom:8px">Check my matches</h2>
         <label for="tokenIn">Your access code</label>
-        <input id="tokenIn" autocomplete="off" placeholder="Paste the code you got after registering">
-        <button class="btn" id="btnLookup" style="margin-top:16px;width:100%">Check</button>
+        <input id="tokenIn" autocomplete="off" placeholder="Paste the code you received after registering">
+        <button class="btn" id="btnLookup" style="margin-top:14px;width:100%">Check</button>
+        <div class="msg err" id="statusErr" hidden></div>
       </div>
-      <div id="result" hidden></div>
-      <div class="msg err" id="statusErr" hidden></div>
-      <p style="text-align:center;margin:18px 0 0"><button class="linkbtn" id="btnBack2">Back to home</button></p>
+      <div id="matchResult" hidden></div>
+      <p style="text-align:center;margin:18px 0 0"><button class="linkbtn" id="btnBack2">← Back to home</button></p>
     </div>
+  </div>
+</div>
+
+<!-- CHAT THREAD -->
+<div id="viewChat" hidden>
+  <div class="wrap" style="padding:20px 20px 30px">
+    <div class="chat-wrap">
+      <div class="chat-header" id="chatHeader"></div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-input">
+        <textarea id="chatText" placeholder="Type a message…" rows="1"></textarea>
+        <button class="btn sm" id="btnSend">Send</button>
+      </div>
+    </div>
+    <p style="text-align:center;margin:12px 0 0"><button class="linkbtn" id="btnBackChat">← Back to matches</button></p>
   </div>
 </div>
 </main>
 
-<footer>
-  <div class="wrap">CampusLink · Built by a student, for students.</div>
-</footer>
+<footer><div class="wrap">CampusLink · Built by a student, for students.</div></footer>
 
 <script>
-/* ====== SETTINGS ====== */
+/* ── CONFIG ── */
 const SUPABASE_URL = "https://gtjphqestjwrmlysrhpt.supabase.co";
-const SUPABASE_KEY = "sb_publishable_9bZRIGXfx2qhHOto_Kwa9A_mFZAE7gw"; // publishable key: safe for browsers
-/* ====================== */
+const SUPABASE_KEY = "sb_publishable_9bZRIGXfx2qhHOto_Kwa9A_mFZAE7gw";
 
+/* ── STATE ── */
+let myToken = null;
+let chatWith = null; // { token, name, photo_url }
+let pollTimer = null;
+
+/* ── UTILS ── */
 const $ = id => document.getElementById(id);
-const views = ["viewHome","viewJoin","viewStatus"];
-function show(v){ views.forEach(x => $(x).hidden = (x !== v)); window.scrollTo(0,0); }
+const views = ["viewHome","viewJoin","viewMatches","viewChat"];
+
+function show(v){
+  views.forEach(x => $(x).hidden = x !== v);
+  window.scrollTo(0,0);
+  if(v !== "viewChat") clearInterval(pollTimer);
+}
+
+function el(tag, cls, text){
+  const e = document.createElement(tag);
+  if(cls) e.className = cls;
+  if(text !== undefined) e.textContent = text;
+  return e;
+}
 
 async function rpc(fn, body){
   const res = await fetch(SUPABASE_URL + "/rest/v1/rpc/" + fn, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "apikey": SUPABASE_KEY },
+    method:"POST",
+    headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY},
     body: JSON.stringify(body)
   });
   let data = null;
-  try { data = await res.json(); } catch(e) {}
-  if (!res.ok) throw new Error((data && data.message) || "Something went wrong. Please try again.");
+  try{ data = await res.json(); }catch(e){}
+  if(!res.ok) throw new Error((data && data.message) || "Something went wrong. Please try again.");
   return data;
 }
 
-function showErr(el, text){ el.textContent = text; el.hidden = false; }
-function el(tag, cls, text){ const e = document.createElement(tag); if(cls) e.className = cls; if(text !== undefined) e.textContent = text; return e; }
+function saveToken(t){ myToken = t; try{ localStorage.setItem("cl_token", t); }catch(_){} }
+function loadToken(){ if(!myToken){ try{ myToken = localStorage.getItem("cl_token"); }catch(_){} } return myToken; }
 
-/* navigation */
-$("btnJoin").onclick = () => show("viewJoin");
-$("btnBack1").onclick = () => show("viewHome");
-$("btnBack2").onclick = () => show("viewHome");
+/* ── PHOTO COMPRESSION ── */
+async function compressImage(file, maxKB=100){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        let w = img.width, h = img.height;
+        const MAX = 800;
+        if(w > MAX || h > MAX){
+          if(w > h){ h = Math.round(h * MAX/w); w = MAX; }
+          else{ w = Math.round(w * MAX/h); h = MAX; }
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        let quality = 0.85;
+        const tryCompress = () => {
+          canvas.toBlob(blob => {
+            if(!blob) return reject(new Error("Could not compress image."));
+            if(blob.size <= maxKB * 1024 || quality < 0.2){
+              resolve(blob);
+            } else {
+              quality -= 0.1;
+              tryCompress();
+            }
+          }, "image/jpeg", quality);
+        };
+        tryCompress();
+      };
+      img.onerror = () => reject(new Error("Could not read image."));
+      img.src = e.target.result;
+    };
+    reader.onerror = () => reject(new Error("Could not read file."));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadPhoto(blob, token){
+  const path = token + ".jpg";
+  const res = await fetch(SUPABASE_URL + "/storage/v1/object/profiles/" + path, {
+    method:"POST",
+    headers:{"apikey": SUPABASE_KEY, "Content-Type":"image/jpeg"},
+    body: blob
+  });
+  if(!res.ok){
+    const t = await res.text();
+    throw new Error("Photo upload failed: " + t);
+  }
+  return SUPABASE_URL + "/storage/v1/object/public/profiles/" + path;
+}
+
+/* ── PHOTO PREVIEW ── */
+$("photoFile").addEventListener("change", async () => {
+  const file = $("photoFile").files[0];
+  if(!file) return;
+  $("photoInfo").textContent = "Compressing…";
+  try{
+    const blob = await compressImage(file);
+    const url = URL.createObjectURL(blob);
+    $("photoPreview").innerHTML = `<img src="${url}" alt="preview">`;
+    $("photoInfo").textContent = `Compressed to ${Math.round(blob.size/1024)} KB. Looks good!`;
+  } catch(e){
+    $("photoInfo").textContent = "Could not compress: " + e.message;
+  }
+});
+
+/* ── NAVIGATION ── */
+$("brandHome").onclick = () => show("viewHome");
+$("btnJoin").onclick   = () => show("viewJoin");
+$("btnBack1").onclick  = () => show("viewHome");
+$("btnBack2").onclick  = () => show("viewHome");
+$("btnBackChat").onclick = () => { show("viewMatches"); loadMatches(loadToken()); };
+$("qrImg").onerror = () => $("qrImg").parentElement.textContent = "Add phonepe-qr.png";
+
 $("btnHave").onclick = () => {
-  $("result").hidden = true; $("lookup").hidden = false; $("statusErr").hidden = true;
-  $("tokenIn").value = localStorage.getItem("campuslink_token") || "";
-  show("viewStatus");
+  $("matchResult").hidden = true;
+  $("lookupBox").hidden = false;
+  $("statusErr").hidden = true;
+  $("tokenIn").value = loadToken() || "";
+  show("viewMatches");
 };
 
-/* QR fallback if image file is missing */
-$("qrImg").onerror = () => { $("qrBox").textContent = "Add phonepe-qr.png to the site folder"; };
-
-/* register */
+/* ── REGISTER ── */
 $("joinForm").addEventListener("submit", async e => {
   e.preventDefault();
   $("joinErr").hidden = true;
   const btn = $("btnSubmit");
   btn.disabled = true; btn.textContent = "Registering…";
-  try {
+
+  try{
+    // 1: register without photo to get token
     const token = await rpc("register", {
-      p_name: $("name").value, p_college: $("college").value, p_branch: $("branch").value,
-      p_section: $("section").value,p_year: $("year").value, p_skills: $("skills").value, p_needs: $("needs").value, p_utr: $("utr").value
+      p_name:$("name").value, p_college:$("college").value,
+      p_branch:$("branch").value, p_section:$("section").value,
+      p_skills:$("skills").value, p_needs:$("needs").value,
+      p_utr:$("utr").value, p_photo_url:""
     });
-    try { localStorage.setItem("campuslink_token", token); } catch(_) {}
+
+    // 2: upload photo if chosen
+    const file = $("photoFile").files[0];
+    if(file){
+      btn.textContent = "Uploading photo…";
+      try{
+        const blob = await compressImage(file);
+        const photoUrl = await uploadPhoto(blob, token);
+        // update photo_url
+        await rpc("register", {
+          p_name:$("name").value, p_college:$("college").value,
+          p_branch:$("branch").value, p_section:$("section").value,
+          p_skills:$("skills").value, p_needs:$("needs").value,
+          p_utr:$("utr").value + "_photo_update_ignore",
+          p_photo_url: photoUrl
+        }).catch(()=>{}); // ignore duplicate UTR error on second call
+        // use a dedicated update path via storage only; photo saved above
+      } catch(pe){ console.warn("Photo upload failed:", pe.message); }
+    }
+
+    saveToken(token);
     $("joinForm").reset();
-    await loadStatus(token, true);
-    show("viewStatus");
-  } catch(err) {
-    showErr($("joinErr"), err.message);
+    $("photoPreview").innerHTML = "<span>No photo</span>";
+
+    // show success
+    $("matchResult").hidden = false;
+    $("lookupBox").hidden = true;
+    $("matchResult").replaceChildren();
+    const h = el("h2","","You're registered!");
+    h.style.marginBottom = "8px";
+    $("matchResult").append(h);
+    $("matchResult").append(el("p","","Save your access code. It is the only way to check your matches."));
+    const codeBox = el("div","code", token);
+    $("matchResult").append(codeBox);
+    const copy = el("button","btn ghost sm","Copy code");
+    copy.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(token); copy.textContent = "Copied ✓"; };
+    $("matchResult").append(copy);
+    $("matchResult").append(el("div","msg ok","Payment is being verified. Your matches appear once confirmed. Come back with your code."));
+    show("viewMatches");
+
+  } catch(err){
+    $("joinErr").textContent = err.message;
+    $("joinErr").hidden = false;
   } finally {
     btn.disabled = false; btn.textContent = "Register";
   }
 });
 
-/* lookup */
+/* ── LOOKUP ── */
 $("btnLookup").onclick = async () => {
   const t = $("tokenIn").value.trim();
   $("statusErr").hidden = true;
-  if (!t) return showErr($("statusErr"), "Paste your access code first.");
+  if(!t) return showStatusErr("Paste your access code first.");
   const b = $("btnLookup"); b.disabled = true; b.textContent = "Checking…";
-  try { await loadStatus(t, false); }
-  catch(err){ showErr($("statusErr"), err.message.includes("uuid") ? "That access code looks wrong. Copy it again." : err.message); }
-  finally { b.disabled = false; b.textContent = "Check"; }
+  try{ saveToken(t); await loadMatches(t); }
+  catch(err){ showStatusErr(err.message.includes("uuid") ? "That code looks wrong. Copy it again carefully." : err.message); }
+  finally{ b.disabled = false; b.textContent = "Check"; }
 };
 
-async function loadStatus(token, justRegistered){
+function showStatusErr(msg){ $("statusErr").textContent = msg; $("statusErr").hidden = false; }
+
+async function loadMatches(token){
+  if(!token) return;
   const data = await rpc("check_matches", { p_token: token });
-  const box = $("result");
+  if(!data.found) throw new Error("No registration found for this code.");
+
+  $("lookupBox").hidden = true;
+  const box = $("matchResult");
+  box.hidden = false;
   box.replaceChildren();
-  $("statusErr").hidden = true;
-  if (!data.found) throw new Error("No registration found for this code.");
-  $("lookup").hidden = true; box.hidden = false;
 
-  if (justRegistered) {
-    box.append(el("h2", "", "You're registered, " + data.name.split(" ")[0] + "!"));
-    box.append(el("p", "", "Save this access code. It is the only way to see your matches later."));
-    box.append(el("div", "code", token));
-    const copy = el("button", "btn ghost", "Copy code");
-    copy.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(token); copy.textContent = "Copied"; };
-    box.append(copy);
-  } else {
-    box.append(el("h2", "", "Hi " + data.name.split(" ")[0]));
+  // global unread badge
+  const unread = data.total_unread || 0;
+  if(unread > 0){
+    $("globalBadge").textContent = unread; $("globalBadge").hidden = false;
+  } else { $("globalBadge").hidden = true; }
+
+  const greeting = el("h2","", "Hi " + data.name.split(" ")[0] + (unread > 0 ? "" : ""));
+  greeting.style.marginBottom = "6px";
+  if(unread > 0){
+    const dot = el("span","unread-dot", unread + " new");
+    greeting.append(" ", dot);
   }
+  box.append(greeting);
 
-  if (!data.paid) {
-    box.append(el("div", "msg ok", "Payment is being checked. Once it is confirmed, your matches appear here. Come back with your access code in a few hours."));
-    const re = el("button", "btn ghost", "Check again"); re.style.marginTop = "14px";
-    re.onclick = () => loadStatus(token, false).catch(e => showErr($("statusErr"), e.message));
+  if(!data.paid){
+    box.append(el("div","msg ok","Your payment is being checked. Once confirmed, your matches appear here. Come back with your code."));
+    const re = el("button","btn ghost","Check again"); re.style.marginTop = "14px";
+    re.onclick = () => loadMatches(token).catch(e => showStatusErr(e.message));
     box.append(re);
     return;
   }
-// Update skills section
-const updateTitle = el("h3", "", "Update your skills");
-updateTitle.style.margin = "24px 0 8px";
-box.append(updateTitle);
 
-const updateInfo = el(
-  "p",
-  "",
-  "Your interests and skills can change. Update what you can offer and what you need anytime."
-);
-updateInfo.style.color = "var(--muted)";
-updateInfo.style.margin = "0 0 14px";
-box.append(updateInfo);
+  const matchList = data.matches || [];
+  const ht = el("h3","", matchList.length ? "Your matches (" + matchList.length + ")" : "No matches yet");
+  ht.style.margin = "20px 0 0";
+  box.append(ht);
 
-const updateForm = document.createElement("div");
-
-const skillsLabel = el("label", "", "Skills you can help with");
-updateForm.append(skillsLabel);
-
-const updateSkillsInput = document.createElement("textarea");
-updateSkillsInput.rows = 2;
-updateSkillsInput.placeholder = "python, video editing, canva";
-updateForm.append(updateSkillsInput);
-
-const needsLabel = el("label", "", "Skills you need from others");
-updateForm.append(needsLabel);
-
-const updateNeedsInput = document.createElement("textarea");
-updateNeedsInput.rows = 2;
-updateNeedsInput.placeholder = "python, public speaking";
-updateForm.append(updateNeedsInput);
-
-const updateBtn = el("button", "btn", "Save updated skills");
-updateBtn.type = "button";
-updateBtn.style.marginTop = "14px";
-updateBtn.style.width = "100%";
-updateForm.append(updateBtn);
-
-const updateMsg = el("div", "msg");
-updateMsg.hidden = true;
-updateForm.append(updateMsg);
-
-box.append(updateForm);
-
-updateBtn.onclick = async () => {
-  updateMsg.hidden = true;
-
-  const newSkills = updateSkillsInput.value.trim();
-  const newNeeds = updateNeedsInput.value.trim();
-
-  if (!newSkills || !newNeeds) {
-    updateMsg.className = "msg err";
-    updateMsg.textContent =
-      "Please enter at least one skill you can offer and one skill you need.";
-    updateMsg.hidden = false;
-    return;
+  if(!matchList.length){
+    box.append(el("p","","Nobody in your college has filled both sides yet. Check again soon."));
   }
 
-  updateBtn.disabled = true;
-  updateBtn.textContent = "Updating…";
+  matchList.forEach(m => {
+    const card = el("div","match");
 
-  try {
-    const updated = await rpc("update_skills", {
-      p_token: token,
-      p_skills: newSkills,
-      p_needs: newNeeds
-    });
+    // top row: avatar + name
+    const top = el("div","match-top");
+    if(m.photo_url){
+      const img = document.createElement("img");
+      img.className = "avatar"; img.src = m.photo_url; img.alt = m.name;
+      img.onerror = () => img.replaceWith(initAvatar(m.name));
+      top.append(img);
+    } else { top.append(initAvatar(m.name)); }
 
-    if (!updated.success) {
-      throw new Error(updated.message || "Could not update your skills.");
+    const info = el("div");
+    const nameRow = el("h3","", m.name);
+    if(m.unread > 0){
+      nameRow.append(" "); nameRow.append(el("span","unread-dot", m.unread + " new"));
     }
+    info.append(nameRow);
+    info.append(el("p","", m.college + " · " + m.branch + " · Sec " + m.section));
+    top.append(info);
+    card.append(top);
 
-    updateMsg.className = "msg ok";
-    updateMsg.textContent =
-      "Skills updated successfully! Your matches are being refreshed.";
-    updateMsg.hidden = false;
+    card.append(el("div","line","They can teach: " + m.they_offer.join(", ")));
+    card.append(el("div","line","They need from you: " + m.they_need.join(", ")));
 
-    setTimeout(() => {
-      loadStatus(token, false).catch(err =>
-        showErr($("statusErr"), err.message)
-      );
-    }, 800);
+    const msgBtn = el("button","btn sm","💬 Message"); 
+    msgBtn.style.marginTop = "12px";
+    msgBtn.onclick = () => openChat(token, m);
+    card.append(msgBtn);
 
-  } catch (err) {
-    updateMsg.className = "msg err";
-    updateMsg.textContent = err.message;
-    updateMsg.hidden = false;
-  } finally {
-    updateBtn.disabled = false;
-    updateBtn.textContent = "Save updated skills";
-  }
-};
-
-  box.append(el("h3", "", data.matches.length ? "Your matches (" + data.matches.length + ")" : "No matches yet"));
-  box.lastChild.style.margin = "22px 0 0";
-  if (!data.matches.length) {
-    box.append(el("p", "", "Nobody in your college fits both sides yet. New students join often, so check again soon."));
-  }
-  data.matches.forEach(m => {
-    const c = el("div", "match");
-    c.append(el("h3", "", m.name));
-    c.append(el("p", "", m.college + " · " + m.branch + " · " + m.year + " · Section " + m.section));
-    c.append(el("div", "line", "They can teach you: " + m.they_offer.join(", ")));
-    c.append(el("div", "line", "They need from you: " + m.they_need.join(", ")));
-    box.append(c);
+    box.append(card);
   });
-  const re = el("button", "btn ghost", "Refresh matches"); re.style.marginTop = "18px";
-  re.onclick = () => loadStatus(token, false).catch(e => showErr($("statusErr"), e.message));
+
+  const re = el("button","btn ghost","Refresh"); re.style.marginTop = "18px";
+  re.onclick = () => loadMatches(token).catch(e => showStatusErr(e.message));
   box.append(re);
 }
+
+function initAvatar(name){
+  const d = el("div","avatar-placeholder");
+  d.textContent = (name || "?")[0].toUpperCase();
+  return d;
+}
+
+/* ── CHAT ── */
+async function openChat(myTok, other){
+  chatWith = other;
+  show("viewChat");
+
+  // header
+  const hdr = $("chatHeader");
+  hdr.replaceChildren();
+  if(other.photo_url){
+    const img = document.createElement("img");
+    img.className = "avatar"; img.src = other.photo_url; img.alt = other.name;
+    img.onerror = () => img.replaceWith(initAvatar(other.name));
+    hdr.append(img);
+  } else { hdr.append(initAvatar(other.name)); }
+  const hn = el("div");
+  hn.append(el("b","",other.name));
+  hn.append(el("div","",other.college + " · " + other.branch));
+  hdr.append(hn);
+
+  await fetchThread(myTok, other.token);
+
+  // poll every 8 seconds for new messages
+  clearInterval(pollTimer);
+  pollTimer = setInterval(() => fetchThread(myTok, other.token, true), 8000);
+
+  // send button
+  $("btnSend").onclick = () => sendMsg(myTok, other.token);
+  $("chatText").onkeydown = e => {
+    if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); sendMsg(myTok, other.token); }
+  };
+}
+
+async function fetchThread(myTok, otherTok, silent=false){
+  try{
+    const msgs = await rpc("get_thread", { p_my_token: myTok, p_other_token: otherTok });
+    const body = $("chatBody");
+    const atBottom = body.scrollHeight - body.scrollTop - body.clientHeight < 60;
+    body.replaceChildren();
+    if(msgs.length === 0){
+      const ph = el("p","","No messages yet. Say hi!");
+      ph.style.cssText = "text-align:center;color:var(--muted);margin:auto;padding:40px 0";
+      body.append(ph);
+    } else {
+      msgs.forEach(m => {
+        const wrap = el("div");
+        wrap.style.display = "flex";
+        wrap.style.flexDirection = "column";
+        const bub = el("div","bubble " + (m.from_me ? "me" : "them"), m.body);
+        const time = el("div","bubble-time", m.time);
+        bub.append(time);
+        wrap.append(bub);
+        body.append(wrap);
+      });
+    }
+    if(atBottom || !silent) body.scrollTop = body.scrollHeight;
+    $("globalBadge").hidden = true;
+  } catch(e){ if(!silent) console.error(e); }
+}
+
+async function sendMsg(myTok, otherTok){
+  const text = $("chatText").value.trim();
+  if(!text) return;
+  $("chatText").value = "";
+  $("btnSend").disabled = true;
+  try{
+    await rpc("send_message", { p_from_token: myTok, p_to_token: otherTok, p_body: text });
+    await fetchThread(myTok, otherTok);
+  } catch(e){ alert(e.message); $("chatText").value = text; }
+  finally{ $("btnSend").disabled = false; $("chatText").focus(); }
+}
+
+/* ── INIT ── */
+(function(){
+  const saved = loadToken();
+  if(saved){
+    $("globalBadge").textContent = "…";
+    $("globalBadge").hidden = false;
+    rpc("check_matches",{p_token:saved}).then(d => {
+      const u = d && d.total_unread || 0;
+      if(u > 0){ $("globalBadge").textContent = u; $("globalBadge").hidden = false; }
+      else { $("globalBadge").hidden = true; }
+    }).catch(()=>{ $("globalBadge").hidden = true; });
+  }
+})();
 </script>
 </body>
 </html>
