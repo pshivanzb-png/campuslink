@@ -15,6 +15,7 @@
   --pink:#ec4899;--pink-light:#fce7f3;
   --yellow:#fbbf24;--yellow-light:#fef3c7;
   --green:#10b981;--green-light:#d1fae5;
+  --teal:#0891b2;--teal-light:#cffafe;
   --line:#e5e7eb;--err:#dc2626;--ok:#059669;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
@@ -24,8 +25,6 @@ html{scroll-behavior:smooth}
 body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:17px;overflow-x:hidden}
 h1,h2,h3{font-family:'Nunito',sans-serif;line-height:1.1;margin:0}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
-
-/* ── HEADER ── */
 header{padding:16px 0;position:sticky;top:env(safe-area-inset-top,0px);background:rgba(240,244,255,0.92);backdrop-filter:blur(12px);z-index:100;border-bottom:2px solid var(--line)}
 header .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;letter-spacing:-.5px;cursor:pointer;display:flex;align-items:center;gap:6px}
@@ -37,21 +36,16 @@ header .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
 .badge{position:absolute;top:-4px;right:-4px;background:var(--pink);color:#fff;border-radius:999px;font-size:11px;font-weight:900;min-width:20px;height:20px;display:flex;align-items:center;justify-content:center;padding:0 5px;border:2px solid var(--bg)}
 button,input,textarea{font:inherit}
 :focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-
-/* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;border:0;border-radius:14px;padding:14px 26px;font-family:'Nunito',sans-serif;font-weight:800;font-size:17px;cursor:pointer;text-decoration:none;transition:transform .1s,box-shadow .1s;box-shadow:0 4px 0 var(--purple-dark)}
 .btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--purple-dark)}
 .btn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--purple-dark)}
-.btn:disabled{opacity:.6;cursor:wait;transform:none}
-.btn.pink{background:var(--pink);box-shadow:0 4px 0 #be185d}
-.btn.pink:hover{box-shadow:0 6px 0 #be185d}
-.btn.ghost{background:#fff;color:var(--purple);border:2.5px solid var(--purple);box-shadow:0 4px 0 var(--purple-light)}
-.btn.ghost:hover{background:var(--purple-light)}
+.btn:disabled{opacity:.6;cursor:wait;transform:none;box-shadow:0 4px 0 var(--purple-dark)}
+.btn.pink{background:var(--pink);box-shadow:0 4px 0 #be185d}.btn.pink:hover{box-shadow:0 6px 0 #be185d}
+.btn.ghost{background:#fff;color:var(--purple);border:2.5px solid var(--purple);box-shadow:0 4px 0 var(--purple-light)}.btn.ghost:hover{background:var(--purple-light)}
 .btn.sm{padding:9px 18px;font-size:15px;border-radius:10px;box-shadow:0 3px 0 var(--purple-dark)}
-.btn.green{background:var(--green);box-shadow:0 4px 0 #047857}
-.btn.green:hover{box-shadow:0 6px 0 #047857}
+.btn.teal{background:var(--teal);box-shadow:0 4px 0 #0e7490}.btn.teal:hover{box-shadow:0 6px 0 #0e7490}
 
-/* ── HERO ── */
+/* hero */
 .hero{padding:50px 0 60px;text-align:center;position:relative}
 .hero-badge{display:inline-block;background:var(--yellow-light);color:#92400e;border:2px solid var(--yellow);border-radius:999px;padding:6px 16px;font-weight:700;font-size:14px;margin-bottom:20px}
 .hero h1{font-size:clamp(38px,7vw,68px);font-weight:900;letter-spacing:-2px;line-height:1.05;max-width:800px;margin:0 auto 20px}
@@ -60,15 +54,10 @@ button,input,textarea{font:inherit}
 .hero p.sub{font-size:19px;color:var(--muted);max-width:520px;margin:0 auto 32px}
 .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .price-note{margin-top:14px;color:var(--muted);font-size:15px}
-
-/* floating emoji decorations */
 .deco{position:absolute;font-size:36px;opacity:.18;pointer-events:none;user-select:none}
-.deco.d1{top:30px;left:5%}
-.deco.d2{top:60px;right:6%}
-.deco.d3{bottom:20px;left:8%}
-.deco.d4{bottom:40px;right:4%}
+.deco.d1{top:30px;left:5%}.deco.d2{top:60px;right:6%}.deco.d3{bottom:20px;left:8%}.deco.d4{bottom:40px;right:4%}
 
-/* ── PUZZLE VISUAL ── */
+/* puzzle visual */
 .puzzle-wrap{display:flex;justify-content:center;gap:0;margin:40px 0 56px;position:relative}
 .puzzle-card{background:var(--card);border:2.5px solid var(--ink);border-radius:20px;padding:18px 20px;width:220px;box-shadow:6px 6px 0 var(--ink);position:relative}
 .puzzle-card.right{margin-left:-2px;box-shadow:6px 6px 0 var(--yellow)}
@@ -76,9 +65,10 @@ button,input,textarea{font:inherit}
 .skill-chip{display:inline-flex;align-items:center;gap:4px;border-radius:10px;padding:5px 12px;font-size:14px;font-weight:700;margin:3px 3px 0 0}
 .chip-has{background:var(--green-light);color:#065f46}
 .chip-needs{background:var(--pink-light);color:#9d174d}
+.chip-int{background:var(--teal-light);color:#164e63}
 .puzzle-join{width:56px;height:56px;background:var(--yellow);border:2.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:24px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;box-shadow:3px 3px 0 var(--ink)}
 
-/* ── HOW IT WORKS ── */
+/* steps */
 .section{padding:48px 0}
 .section-title{font-size:clamp(26px,4vw,38px);font-weight:900;text-align:center;margin-bottom:8px}
 .section-sub{text-align:center;color:var(--muted);margin:0 auto 32px;max-width:480px}
@@ -95,7 +85,7 @@ button,input,textarea{font:inherit}
 .steps h3{font-size:19px;margin-bottom:6px}
 .steps p{margin:0;color:var(--muted);font-size:15px}
 
-/* ── PANEL / FORM ── */
+/* panel / form */
 .panel{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:28px;max-width:640px;margin:0 auto;box-shadow:0 8px 32px rgba(124,58,237,.08)}
 .panel-title{font-size:28px;font-weight:900;margin-bottom:6px}
 .pay-box{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center;background:var(--yellow-light);border:2px solid var(--yellow);border-radius:16px;padding:16px;margin-bottom:22px}
@@ -111,38 +101,51 @@ input:focus,textarea:focus{border-color:var(--purple);outline:none;box-shadow:0 
 .msg.ok{background:var(--green-light);color:#065f46;border:1.5px solid #6ee7b7}
 .code{font-family:ui-monospace,Menlo,monospace;background:var(--bg);border:2px dashed var(--purple);border-radius:12px;padding:14px;word-break:break-all;font-size:15px;margin:12px 0}
 
+/* interest tag picker */
+.int-suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.int-tag{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;cursor:pointer;border:2px solid var(--line);background:#fff;transition:all .15s;user-select:none}
+.int-tag:hover{border-color:var(--teal);background:var(--teal-light);color:#164e63}
+.int-tag.selected{border-color:var(--teal);background:var(--teal-light);color:#164e63}
+.int-tag.selected::after{content:' ✓'}
+.int-field-wrap{position:relative}
+.int-field-wrap input{padding-right:40px}
+
 /* photo upload */
 .photo-wrap{display:flex;align-items:center;gap:16px;margin-top:8px}
-.photo-preview{width:80px;height:80px;border-radius:50%;background:var(--bg);border:3px dashed var(--line);overflow:hidden;display:grid;place-items:center;flex-shrink:0;color:var(--muted);font-size:13px;text-align:center;transition:border-color .2s}
+.photo-preview{width:80px;height:80px;border-radius:50%;background:var(--bg);border:3px dashed var(--line);overflow:hidden;display:grid;place-items:center;flex-shrink:0;color:var(--muted);font-size:22px;transition:border-color .2s}
 .photo-preview img{width:100%;height:100%;object-fit:cover}
 .photo-info{font-size:14px;color:var(--muted)}
 
-/* ── SECTION LABELS ── */
+/* section labels */
 .section-label{display:flex;align-items:center;gap:10px;margin:26px 0 8px}
 .section-label h3{font-size:19px;margin:0;font-weight:800}
 .pill{border-radius:999px;padding:4px 14px;font-size:13px;font-weight:700}
 .pill.mutual{background:var(--purple-light);color:var(--purple-dark)}
 .pill.oneway{background:var(--yellow-light);color:#92400e}
+.pill.interest{background:var(--teal-light);color:#164e63}
 .section-desc{font-size:14px;color:var(--muted);margin:0 0 12px}
 
-/* ── MATCH CARDS ── */
+/* match cards */
 .match{border:2px solid var(--line);border-radius:16px;padding:16px;margin-top:10px;background:#fff;transition:box-shadow .15s,transform .15s}
 .match:hover{box-shadow:0 6px 20px rgba(124,58,237,.12);transform:translateY(-2px)}
 .match.mutual-card{border-color:var(--purple);box-shadow:4px 4px 0 var(--purple-light)}
 .match.oneway-card{border-color:var(--yellow);box-shadow:4px 4px 0 var(--yellow-light)}
-.match-top{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.match.interest-card{border-color:var(--teal);box-shadow:4px 4px 0 var(--teal-light)}
+.match-top{display:flex;gap:14px;align-items:center;margin-bottom:10px}
 .avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--line);flex-shrink:0;background:var(--bg)}
 .avatar-placeholder{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pink));display:grid;place-items:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;color:#fff;flex-shrink:0}
 .match h3{font-size:18px;margin-bottom:2px;font-weight:800}
 .match p{margin:2px 0;color:var(--muted);font-size:14px}
 .chips-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
 .unread-dot{display:inline-flex;align-items:center;background:var(--pink);color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:2px 9px;margin-left:8px;vertical-align:middle}
+.common-int{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.int-badge{display:inline-flex;align-items:center;gap:3px;background:var(--teal-light);color:#164e63;border-radius:999px;padding:3px 10px;font-size:13px;font-weight:700}
 
-/* ── CHAT ── */
+/* chat */
 .chat-outer{max-width:640px;margin:0 auto;display:flex;flex-direction:column;height:calc(100vh - 130px);border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.1)}
 .chat-header{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--purple);color:#fff}
 .chat-header .avatar,.chat-header .avatar-placeholder{width:40px;height:40px;font-size:15px;border-color:rgba(255,255,255,.3)}
-.chat-header-info b{font-family:'Nunito',sans-serif;font-size:17px}
+.chat-header-info b{font-family:'Nunito',sans-serif;font-size:17px;display:block}
 .chat-header-info small{opacity:.8;font-size:13px}
 .chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#f9f0ff}
 .bubble{max-width:78%;padding:10px 14px;border-radius:16px;font-size:15px;line-height:1.4;word-break:break-word}
@@ -176,30 +179,21 @@ footer .foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:18p
 
 <header>
   <div class="wrap">
-    <div class="brand" id="brandHome">
-      <span class="emoji">🧩</span>Missing<span class="piece">Piece</span>
-    </div>
-    <button class="linkbtn" id="btnHave">
-      Already in? Check matches
-      <span class="badge" id="globalBadge" hidden></span>
-    </button>
+    <div class="brand" id="brandHome"><span class="emoji">🧩</span>Missing<span class="piece">Piece</span></div>
+    <button class="linkbtn" id="btnHave">Already in? Check matches<span class="badge" id="globalBadge" hidden></span></button>
   </div>
 </header>
 
 <main>
-<!-- ══ HOME ══ -->
+
+<!-- HOME -->
 <div id="viewHome">
   <div class="wrap">
-
     <div class="hero">
-      <span class="deco d1">🎨</span>
-      <span class="deco d2">💻</span>
-      <span class="deco d3">🎬</span>
-      <span class="deco d4">📐</span>
-
+      <span class="deco d1">🎨</span><span class="deco d2">💻</span><span class="deco d3">🎬</span><span class="deco d4">📐</span>
       <div class="hero-badge">🎓 For college students only</div>
       <h1>You have a skill.<br>Someone needs it.<br>Find your <span class="hl">missing piece</span>.</h1>
-      <p class="sub">Every student in your college has something to offer and something to learn. We connect the two.</p>
+      <p class="sub">Connect with students in your college who have the skills you need — or share the same interests. ₹99, lifetime access.</p>
       <div class="hero-btns">
         <button class="btn" id="btnJoin">🚀 Join for ₹99</button>
         <button class="btn ghost" id="btnHave2">Already in? →</button>
@@ -212,40 +206,30 @@ footer .foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:18p
         <small>You</small>
         <div><span class="skill-chip chip-has">✅ Video editing</span></div>
         <div><span class="skill-chip chip-needs">🔍 Need: Python</span></div>
+        <div><span class="skill-chip chip-int">🎯 Cricket · Startups</span></div>
       </div>
       <div class="puzzle-join">🤝</div>
       <div class="puzzle-card right">
         <small>Your college mate</small>
         <div><span class="skill-chip chip-has">✅ Python</span></div>
         <div><span class="skill-chip chip-needs">🔍 Need: Video editing</span></div>
+        <div><span class="skill-chip chip-int">🎯 Cricket · Gaming</span></div>
       </div>
     </div>
 
     <section class="section">
       <h2 class="section-title">How it works 👇</h2>
-      <p class="section-sub">Three steps and you're connected with students from your own college.</p>
+      <p class="section-sub">Three steps and you're connected with the right students from your own college.</p>
       <ol class="steps">
-        <li>
-          <div class="step-num">01</div>
-          <h3>Pay ₹99 & register</h3>
-          <p>Pay on PhonePe, fill in your skills and what you want to learn. Takes 2 minutes.</p>
-        </li>
-        <li>
-          <div class="step-num">02</div>
-          <h3>We verify your payment</h3>
-          <p>We check your payment reference and unlock your account. Usually within a few hours.</p>
-        </li>
-        <li>
-          <div class="step-num">03</div>
-          <h3>Message your matches</h3>
-          <p>See students from your college who have what you need — then slide into their DMs. 📩</p>
-        </li>
+        <li><div class="step-num">01</div><h3>Pay ₹99 & register</h3><p>Pay on PhonePe, fill in your skills, what you want to learn, and your interests. Takes 2 minutes.</p></li>
+        <li><div class="step-num">02</div><h3>We verify your payment</h3><p>We check your payment reference and unlock your account. Usually within a few hours.</p></li>
+        <li><div class="step-num">03</div><h3>Message your matches</h3><p>See skill matches and interest matches from your college — then slide into their DMs. 📩</p></li>
       </ol>
     </section>
   </div>
 </div>
 
-<!-- ══ JOIN ══ -->
+<!-- JOIN -->
 <div id="viewJoin" hidden>
   <div class="wrap" style="padding:30px 20px">
     <div class="panel">
@@ -268,7 +252,7 @@ footer .foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:18p
           <div class="photo-preview" id="photoPreview"><span>😊</span></div>
           <div>
             <input type="file" id="photoFile" accept="image/*" style="width:auto;padding:6px 0">
-            <div class="photo-info" id="photoInfo">Pick a clear photo of yourself. We shrink it in your browser — no heavy uploads.</div>
+            <div class="photo-info" id="photoInfo">Pick a clear photo. We shrink it in your browser — no heavy uploads.</div>
           </div>
         </div>
 
@@ -289,6 +273,29 @@ footer .foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:18p
         <label for="ineeds">Skills you want to learn <span class="hint">(comma separated)</span></label>
         <textarea id="ineeds" rows="2" required placeholder="python, UI design, content writing…"></textarea>
 
+        <label for="iinterests">Your interests <span class="hint">(tap suggestions or type your own, comma separated)</span></label>
+        <div class="int-field-wrap">
+          <input id="iinterests" maxlength="300" placeholder="cricket, anime, startups, music…">
+        </div>
+        <div class="int-suggestions" id="intSuggestions">
+          <span class="int-tag" data-val="cricket">🏏 Cricket</span>
+          <span class="int-tag" data-val="football">⚽ Football</span>
+          <span class="int-tag" data-val="gaming">🎮 Gaming</span>
+          <span class="int-tag" data-val="anime">🎌 Anime</span>
+          <span class="int-tag" data-val="music">🎵 Music</span>
+          <span class="int-tag" data-val="startups">🚀 Startups</span>
+          <span class="int-tag" data-val="movies">🎬 Movies</span>
+          <span class="int-tag" data-val="fitness">💪 Fitness</span>
+          <span class="int-tag" data-val="photography">📸 Photography</span>
+          <span class="int-tag" data-val="coding">💻 Coding</span>
+          <span class="int-tag" data-val="reading">📚 Reading</span>
+          <span class="int-tag" data-val="art">🎨 Art</span>
+          <span class="int-tag" data-val="dance">💃 Dance</span>
+          <span class="int-tag" data-val="cooking">🍳 Cooking</span>
+          <span class="int-tag" data-val="travel">✈️ Travel</span>
+          <span class="int-tag" data-val="basketball">🏀 Basketball</span>
+        </div>
+
         <label for="iutr">Payment reference (UTR / transaction ID)</label>
         <input id="iutr" required maxlength="40" autocomplete="off" placeholder="Paste from your PhonePe success screen">
 
@@ -300,7 +307,7 @@ footer .foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:18p
   </div>
 </div>
 
-<!-- ══ MATCHES ══ -->
+<!-- MATCHES -->
 <div id="viewMatches" hidden>
   <div class="wrap" style="padding:30px 20px">
     <div class="panel">
@@ -318,7 +325,7 @@ footer .foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:18p
   </div>
 </div>
 
-<!-- ══ CHAT ══ -->
+<!-- CHAT -->
 <div id="viewChat" hidden>
   <div class="wrap" style="padding:20px 20px 30px">
     <div class="chat-outer">
@@ -332,6 +339,7 @@ footer .foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:18p
     <p style="text-align:center;margin:14px 0 0"><button class="linkbtn" id="btnBackChat">← Back to matches</button></p>
   </div>
 </div>
+
 </main>
 
 <footer>
@@ -345,331 +353,310 @@ footer .foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:18p
 const SUPABASE_URL = "https://gtjphqestjwrmlysrhpt.supabase.co";
 const SUPABASE_KEY = "sb_publishable_9bZRIGXfx2qhHOto_Kwa9A_mFZAE7gw";
 
-let myToken = null;
-let pollTimer = null;
-
+let myToken = null, pollTimer = null;
 const $ = id => document.getElementById(id);
 const views = ["viewHome","viewJoin","viewMatches","viewChat"];
 
-function show(v){
-  views.forEach(x => $(x).hidden = x !== v);
-  window.scrollTo(0,0);
-  if(v !== "viewChat") clearInterval(pollTimer);
-}
+function show(v){ views.forEach(x=>$(x).hidden=x!==v); window.scrollTo(0,0); if(v!=="viewChat") clearInterval(pollTimer); }
+function el(tag,cls,text){ const e=document.createElement(tag); if(cls) e.className=cls; if(text!==undefined) e.textContent=text; return e; }
 
-function el(tag, cls, text){
-  const e = document.createElement(tag);
-  if(cls) e.className = cls;
-  if(text !== undefined) e.textContent = text;
-  return e;
-}
-
-async function rpc(fn, body){
-  const res = await fetch(SUPABASE_URL + "/rest/v1/rpc/" + fn, {
-    method:"POST",
-    headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY},
-    body: JSON.stringify(body)
-  });
-  let data = null;
-  try{ data = await res.json(); }catch(e){}
-  if(!res.ok) throw new Error((data && data.message) || "Something went wrong. Please try again.");
+async function rpc(fn,body){
+  const res=await fetch(SUPABASE_URL+"/rest/v1/rpc/"+fn,{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY},body:JSON.stringify(body)});
+  let data=null; try{data=await res.json();}catch(e){}
+  if(!res.ok) throw new Error((data&&data.message)||"Something went wrong. Please try again.");
   return data;
 }
 
-function saveToken(t){ myToken = t; try{ localStorage.setItem("mp_token", t); }catch(_){} }
-function loadToken(){ if(!myToken){ try{ myToken = localStorage.getItem("mp_token"); }catch(_){} } return myToken; }
+function saveToken(t){ myToken=t; try{localStorage.setItem("mp_token",t);}catch(_){} }
+function loadToken(){ if(!myToken){try{myToken=localStorage.getItem("mp_token");}catch(_){}} return myToken; }
+
+/* interest tag picker */
+document.querySelectorAll(".int-tag").forEach(tag => {
+  tag.addEventListener("click", () => {
+    const val = tag.dataset.val;
+    let cur = $("iinterests").value.split(",").map(x=>x.trim()).filter(Boolean);
+    if(tag.classList.contains("selected")){
+      cur = cur.filter(x => x !== val);
+      tag.classList.remove("selected");
+    } else {
+      if(!cur.includes(val)) cur.push(val);
+      tag.classList.add("selected");
+    }
+    $("iinterests").value = cur.join(", ");
+  });
+});
 
 /* photo compression */
-async function compressImage(file, maxKB=100){
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = new Image();
-      img.onload = () => {
-        let w = img.width, h = img.height;
-        const MAX = 800;
-        if(w > MAX || h > MAX){
-          if(w > h){ h = Math.round(h*MAX/w); w = MAX; }
-          else{ w = Math.round(w*MAX/h); h = MAX; }
-        }
-        const canvas = document.createElement("canvas");
-        canvas.width = w; canvas.height = h;
+async function compressImage(file,maxKB=100){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=e=>{
+      const img=new Image();
+      img.onload=()=>{
+        let w=img.width,h=img.height,MAX=800;
+        if(w>MAX||h>MAX){ if(w>h){h=Math.round(h*MAX/w);w=MAX;}else{w=Math.round(w*MAX/h);h=MAX;} }
+        const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h;
         canvas.getContext("2d").drawImage(img,0,0,w,h);
-        let q = 0.85;
-        const go = () => canvas.toBlob(blob => {
+        let q=0.85;
+        const go=()=>canvas.toBlob(blob=>{
           if(!blob) return reject(new Error("Compression failed."));
-          if(blob.size <= maxKB*1024 || q < 0.2) resolve(blob);
-          else{ q -= 0.1; go(); }
-        }, "image/jpeg", q);
+          if(blob.size<=maxKB*1024||q<0.2) resolve(blob); else{q-=0.1;go();}
+        },"image/jpeg",q);
         go();
       };
-      img.onerror = () => reject(new Error("Could not read image."));
-      img.src = e.target.result;
+      img.onerror=()=>reject(new Error("Could not read image.")); img.src=e.target.result;
     };
-    reader.onerror = () => reject(new Error("Could not read file."));
-    reader.readAsDataURL(file);
+    reader.onerror=()=>reject(new Error("Could not read file.")); reader.readAsDataURL(file);
   });
 }
 
-async function uploadPhoto(blob, token){
-  const res = await fetch(SUPABASE_URL + "/storage/v1/object/profiles/" + token + ".jpg", {
-    method:"POST",
-    headers:{"apikey":SUPABASE_KEY,"Content-Type":"image/jpeg"},
-    body: blob
-  });
+async function uploadPhoto(blob,token){
+  const res=await fetch(SUPABASE_URL+"/storage/v1/object/profiles/"+token+".jpg",{method:"POST",headers:{"apikey":SUPABASE_KEY,"Content-Type":"image/jpeg"},body:blob});
   if(!res.ok) throw new Error("Photo upload failed.");
-  return SUPABASE_URL + "/storage/v1/object/public/profiles/" + token + ".jpg";
+  return SUPABASE_URL+"/storage/v1/object/public/profiles/"+token+".jpg";
 }
 
-$("photoFile").addEventListener("change", async () => {
-  const file = $("photoFile").files[0];
-  if(!file) return;
-  $("photoInfo").textContent = "Compressing… ✨";
+$("photoFile").addEventListener("change",async()=>{
+  const file=$("photoFile").files[0]; if(!file) return;
+  $("photoInfo").textContent="Compressing… ✨";
   try{
-    const blob = await compressImage(file);
-    $("photoPreview").innerHTML = `<img src="${URL.createObjectURL(blob)}" alt="preview">`;
-    $("photoInfo").textContent = `✅ Compressed to ${Math.round(blob.size/1024)} KB. Looking good!`;
-  } catch(e){ $("photoInfo").textContent = "Oops: " + e.message; }
+    const blob=await compressImage(file);
+    $("photoPreview").innerHTML=`<img src="${URL.createObjectURL(blob)}" alt="preview">`;
+    $("photoInfo").textContent=`✅ Compressed to ${Math.round(blob.size/1024)} KB. Looking good!`;
+  }catch(e){$("photoInfo").textContent="Oops: "+e.message;}
 });
 
 /* nav */
-$("brandHome").onclick  = () => show("viewHome");
-$("btnJoin").onclick    = () => show("viewJoin");
-$("btnHave2").onclick   = () => openMatches();
-$("btnBack1").onclick   = () => show("viewHome");
-$("btnBack2").onclick   = () => show("viewHome");
-$("btnBackChat").onclick = () => { show("viewMatches"); loadMatches(loadToken()); };
-$("qrImg").onerror = () => $("qrImg").parentElement.textContent = "Add phonepe-qr.png";
-$("btnHave").onclick = () => openMatches();
+$("brandHome").onclick=()=>show("viewHome");
+$("btnJoin").onclick=()=>show("viewJoin");
+$("btnHave2").onclick=()=>openMatches();
+$("btnBack1").onclick=()=>show("viewHome");
+$("btnBack2").onclick=()=>show("viewHome");
+$("btnBackChat").onclick=()=>{show("viewMatches");loadMatches(loadToken());};
+$("qrImg").onerror=()=>$("qrImg").parentElement.textContent="Add phonepe-qr.png";
+$("btnHave").onclick=()=>openMatches();
 
 function openMatches(){
-  $("matchResult").hidden = true;
-  $("lookupBox").hidden = false;
-  $("statusErr").hidden = true;
-  $("tokenIn").value = loadToken() || "";
-  show("viewMatches");
+  $("matchResult").hidden=true; $("lookupBox").hidden=false; $("statusErr").hidden=true;
+  $("tokenIn").value=loadToken()||""; show("viewMatches");
 }
 
 /* register */
-$("joinForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  $("joinErr").hidden = true;
-  const btn = $("btnSubmit");
-  btn.disabled = true; btn.textContent = "Registering… ⏳";
+$("joinForm").addEventListener("submit",async e=>{
+  e.preventDefault(); $("joinErr").hidden=true;
+  const btn=$("btnSubmit"); btn.disabled=true; btn.textContent="Registering… ⏳";
   try{
-    const token = await rpc("register", {
+    const token=await rpc("register",{
       p_name:$("iname").value, p_college:$("icollege").value,
       p_branch:$("ibranch").value, p_section:$("isection").value,
       p_skills:$("iskills").value, p_needs:$("ineeds").value,
-      p_utr:$("iutr").value, p_photo_url:""
+      p_utr:$("iutr").value, p_photo_url:"",
+      p_interests:$("iinterests").value
     });
-    const file = $("photoFile").files[0];
+    const file=$("photoFile").files[0];
     if(file){
-      btn.textContent = "Uploading photo… 📸";
-      try{
-        const blob = await compressImage(file);
-        await uploadPhoto(blob, token);
-      } catch(pe){ console.warn("Photo:", pe.message); }
+      btn.textContent="Uploading photo… 📸";
+      try{ const blob=await compressImage(file); await uploadPhoto(blob,token); }
+      catch(pe){console.warn("Photo:",pe.message);}
     }
     saveToken(token);
     $("joinForm").reset();
-    $("photoPreview").innerHTML = "<span>😊</span>";
+    $("photoPreview").innerHTML="<span>😊</span>";
+    document.querySelectorAll(".int-tag.selected").forEach(t=>t.classList.remove("selected"));
     showSuccessPanel(token);
     show("viewMatches");
-  } catch(err){
-    $("joinErr").textContent = err.message;
-    $("joinErr").hidden = false;
-  } finally {
-    btn.disabled = false; btn.textContent = "🎉 Complete Registration";
-  }
+  }catch(err){$("joinErr").textContent=err.message;$("joinErr").hidden=false;}
+  finally{btn.disabled=false;btn.textContent="🎉 Complete Registration";}
 });
 
 function showSuccessPanel(token){
-  $("matchResult").hidden = false;
-  $("lookupBox").hidden = true;
-  const box = $("matchResult");
-  box.replaceChildren();
-  const h = el("div","panel-title","You're in! 🎉");
-  h.style.marginBottom = "8px";
-  box.append(h);
-  box.append(el("p","","Your MissingPiece account is live. Save this access code — it's the only way to check your matches."));
-  box.append(el("div","code", token));
-  const copy = el("button","btn ghost sm","📋 Copy code");
-  copy.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(token); copy.textContent = "Copied ✓"; };
+  $("matchResult").hidden=false; $("lookupBox").hidden=true;
+  const box=$("matchResult"); box.replaceChildren();
+  const h=el("div","panel-title","You're in! 🎉"); h.style.marginBottom="8px"; box.append(h);
+  box.append(el("p","","Save your access code below — it's the only way to check your matches."));
+  box.append(el("div","code",token));
+  const copy=el("button","btn ghost sm","📋 Copy code");
+  copy.onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(token);copy.textContent="Copied ✓";};
   box.append(copy);
-  box.append(el("div","msg ok","💸 Payment is being verified. Your matches unlock once confirmed. Come back in a few hours with your code!"));
+  box.append(el("div","msg ok","💸 Payment is being verified. Matches unlock once confirmed. Come back in a few hours!"));
 }
 
 /* lookup */
-$("btnLookup").onclick = async () => {
-  const t = $("tokenIn").value.trim();
-  $("statusErr").hidden = true;
+$("btnLookup").onclick=async()=>{
+  const t=$("tokenIn").value.trim(); $("statusErr").hidden=true;
   if(!t) return showErr("Paste your access code first.");
-  const b = $("btnLookup"); b.disabled = true; b.textContent = "Checking… 🔍";
-  try{ saveToken(t); await loadMatches(t); }
-  catch(err){ showErr(err.message.includes("uuid") ? "That code looks wrong. Copy it again carefully." : err.message); }
-  finally{ b.disabled = false; b.textContent = "🔍 Check my matches"; }
+  const b=$("btnLookup"); b.disabled=true; b.textContent="Checking… 🔍";
+  try{saveToken(t);await loadMatches(t);}
+  catch(err){showErr(err.message.includes("uuid")?"That code looks wrong. Copy it again carefully.":err.message);}
+  finally{b.disabled=false;b.textContent="🔍 Check my matches";}
 };
 
-function showErr(msg){ $("statusErr").textContent = msg; $("statusErr").hidden = false; }
+function showErr(msg){$("statusErr").textContent=msg;$("statusErr").hidden=false;}
+function initAvatar(name){ const d=el("div","avatar-placeholder"); d.textContent=(name||"?")[0].toUpperCase(); return d; }
 
-function initAvatar(name){
-  const d = el("div","avatar-placeholder");
-  d.textContent = (name||"?")[0].toUpperCase();
-  return d;
-}
-
-function buildCard(m, myTok, isOneway){
-  const card = el("div","match " + (isOneway ? "oneway-card" : "mutual-card"));
-  const top = el("div","match-top");
+function buildCard(m,myTok,type){
+  const card=el("div","match "+type+"-card");
+  const top=el("div","match-top");
   if(m.photo_url){
-    const img = document.createElement("img");
-    img.className = "avatar"; img.src = m.photo_url; img.alt = m.name;
-    img.onerror = () => img.replaceWith(initAvatar(m.name));
+    const img=document.createElement("img");
+    img.className="avatar";img.src=m.photo_url;img.alt=m.name;
+    img.onerror=()=>img.replaceWith(initAvatar(m.name));
     top.append(img);
-  } else { top.append(initAvatar(m.name)); }
-  const info = el("div");
-  const nameRow = el("h3","", m.name);
-  if(m.unread > 0){ nameRow.append(" "); nameRow.append(el("span","unread-dot", m.unread + " new 💬")); }
+  } else {top.append(initAvatar(m.name));}
+  const info=el("div");
+  const nameRow=el("h3","",m.name);
+  if(m.unread>0){nameRow.append(" ");nameRow.append(el("span","unread-dot",m.unread+" new 💬"));}
   info.append(nameRow);
-  info.append(el("p","", m.college + " · " + m.branch + " · Sec " + m.section));
+  info.append(el("p","",m.college+" · "+m.branch+" · Sec "+m.section));
   top.append(info); card.append(top);
 
-  const chips = el("div","chips-row");
-  (m.they_offer||[]).forEach(s => { const c = el("span","skill-chip chip-has","✅ " + s); chips.append(c); });
-  (m.they_need||[]).forEach(s => { const c = el("span","skill-chip chip-needs","🔍 " + s); chips.append(c); });
+  // skill chips
+  const chips=el("div","chips-row");
+  (m.they_offer||[]).forEach(s=>{chips.append(el("span","skill-chip chip-has","✅ "+s));});
+  (m.they_need||[]).forEach(s=>{chips.append(el("span","skill-chip chip-needs","🔍 "+s));});
   if(chips.children.length) card.append(chips);
 
-  if(isOneway && (!m.they_need||!m.they_need.length)){
-    card.append(el("p","section-desc","They have a skill you need. Say hi and see if you can help each other! 👋"));
+  // common interests
+  if(m.common_interests&&m.common_interests.length){
+    const intRow=el("div","common-int");
+    m.common_interests.forEach(i=>{intRow.append(el("span","int-badge","🎯 "+i));});
+    card.append(intRow);
   }
 
-  const msgBtn = el("button","btn sm","💬 Message");
-  msgBtn.style.marginTop = "12px";
-  msgBtn.onclick = () => openChat(myTok, m);
+  if(type==="oneway"&&(!m.they_need||!m.they_need.length)){
+    card.append(el("p","section-desc","They have a skill you need. Say hi — you might still help each other! 👋"));
+  }
+  if(type==="interest"){
+    card.append(el("p","section-desc","You share interests! A great reason to connect and see where it goes. 🎯"));
+  }
+
+  const msgBtn=el("button","btn sm","💬 Message");
+  msgBtn.style.marginTop="12px";
+  msgBtn.onclick=()=>openChat(myTok,m);
   card.append(msgBtn);
   return card;
 }
 
 async function loadMatches(token){
   if(!token) return;
-  const data = await rpc("check_matches", { p_token: token });
+  const data=await rpc("check_matches",{p_token:token});
   if(!data.found) throw new Error("No account found for this code. Double-check it.");
 
-  $("lookupBox").hidden = true;
-  const box = $("matchResult");
-  box.hidden = false; box.replaceChildren();
+  $("lookupBox").hidden=true;
+  const box=$("matchResult"); box.hidden=false; box.replaceChildren();
 
-  const unread = data.total_unread || 0;
-  if(unread > 0){ $("globalBadge").textContent = unread; $("globalBadge").hidden = false; }
-  else { $("globalBadge").hidden = true; }
+  const unread=data.total_unread||0;
+  if(unread>0){$("globalBadge").textContent=unread;$("globalBadge").hidden=false;}
+  else{$("globalBadge").hidden=true;}
 
-  const greeting = el("div","panel-title","Hey " + data.name.split(" ")[0] + "! 👋");
-  if(unread > 0){ greeting.append(" "); greeting.append(el("span","unread-dot", unread + " new 💬")); }
-  greeting.style.marginBottom = "6px";
-  box.append(greeting);
+  const greeting=el("div","panel-title","Hey "+data.name.split(" ")[0]+"! 👋");
+  if(unread>0){greeting.append(" ");greeting.append(el("span","unread-dot",unread+" new 💬"));}
+  greeting.style.marginBottom="6px"; box.append(greeting);
 
   if(!data.paid){
-    box.append(el("div","msg ok","⏳ Payment is being verified. Matches unlock once confirmed. Come back with your code!"));
-    const re = el("button","btn ghost","🔄 Refresh"); re.style.marginTop = "14px";
-    re.onclick = () => loadMatches(token).catch(e => showErr(e.message));
-    box.append(re);
-    return;
+    box.append(el("div","msg ok","⏳ Payment being verified. Matches unlock once confirmed. Come back with your code!"));
+    const re=el("button","btn ghost","🔄 Refresh");re.style.marginTop="14px";
+    re.onclick=()=>loadMatches(token).catch(e=>showErr(e.message));
+    box.append(re); return;
   }
 
-  const mutual = data.matches || [];
-  const oneway = data.oneway || [];
+  const mutual=data.matches||[];
+  const oneway=data.oneway||[];
+  const byint=data.byinterest||[];
 
-  /* mutual */
-  const ml = el("div","section-label");
+  /* 1. mutual */
+  const ml=el("div","section-label");
   ml.append(el("h3","","🤝 Mutual matches")); ml.append(el("span","pill mutual","Skill swap"));
   box.append(ml);
   box.append(el("p","section-desc","Both of you have what the other needs — perfect for a real skill swap!"));
-  if(mutual.length) mutual.forEach(m => box.append(buildCard(m, token, false)));
+  if(mutual.length) mutual.forEach(m=>box.append(buildCard(m,token,"mutual")));
   else box.append(el("p","","No mutual matches yet — check below 👇"));
 
-  /* one-way */
-  const ol = el("div","section-label"); ol.style.marginTop = "24px";
+  /* 2. one-way */
+  const ol=el("div","section-label"); ol.style.marginTop="24px";
   ol.append(el("h3","","💡 They have your skill")); ol.append(el("span","pill oneway","One-way"));
   box.append(ol);
-  box.append(el("p","section-desc","These students have a skill you want. Message them — you might still be able to help each other!"));
-  if(oneway.length) oneway.forEach(m => box.append(buildCard(m, token, true)));
-  else box.append(el("p","","No one-way matches yet. More appear as new students join! 🚀"));
+  box.append(el("p","section-desc","These students have a skill you want. Message them and see what you can work out!"));
+  if(oneway.length) oneway.forEach(m=>box.append(buildCard(m,token,"oneway")));
+  else box.append(el("p","","No one-way matches yet."));
 
-  const re = el("button","btn ghost","🔄 Refresh"); re.style.marginTop = "22px";
-  re.onclick = () => loadMatches(token).catch(e => showErr(e.message));
+  /* 3. interests */
+  const il=el("div","section-label"); il.style.marginTop="24px";
+  il.append(el("h3","","🎯 Same interests")); il.append(el("span","pill interest","Common ground"));
+  box.append(il);
+  box.append(el("p","section-desc","You share interests with these students. No skill match needed — just connect!"));
+  if(byint.length) byint.forEach(m=>box.append(buildCard(m,token,"interest")));
+  else box.append(el("p","","No interest matches yet. More appear as new students join! 🚀"));
+
+  const re=el("button","btn ghost","🔄 Refresh"); re.style.marginTop="22px";
+  re.onclick=()=>loadMatches(token).catch(e=>showErr(e.message));
   box.append(re);
 }
 
 /* chat */
-async function openChat(myTok, other){
+async function openChat(myTok,other){
   show("viewChat");
-  const hdr = $("chatHeader"); hdr.replaceChildren();
+  const hdr=$("chatHeader"); hdr.replaceChildren();
   if(other.photo_url){
-    const img = document.createElement("img");
-    img.className = "avatar"; img.src = other.photo_url; img.alt = other.name;
-    img.onerror = () => img.replaceWith(initAvatar(other.name));
+    const img=document.createElement("img");
+    img.className="avatar";img.src=other.photo_url;img.alt=other.name;
+    img.onerror=()=>img.replaceWith(initAvatar(other.name));
     hdr.append(img);
-  } else { hdr.append(initAvatar(other.name)); }
-  const hi = el("div","chat-header-info");
+  } else {hdr.append(initAvatar(other.name));}
+  const hi=el("div","chat-header-info");
   hi.append(el("b","",other.name));
-  hi.append(el("small","", other.college + " · " + other.branch));
+  hi.append(el("small","",other.college+" · "+other.branch));
   hdr.append(hi);
-
-  await fetchThread(myTok, other.token);
+  await fetchThread(myTok,other.token);
   clearInterval(pollTimer);
-  pollTimer = setInterval(() => fetchThread(myTok, other.token, true), 8000);
-  $("btnSend").onclick = () => sendMsg(myTok, other.token);
-  $("chatText").onkeydown = e => {
-    if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); sendMsg(myTok, other.token); }
-  };
+  pollTimer=setInterval(()=>fetchThread(myTok,other.token,true),8000);
+  $("btnSend").onclick=()=>sendMsg(myTok,other.token);
+  $("chatText").onkeydown=e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMsg(myTok,other.token);}};
 }
 
-async function fetchThread(myTok, otherTok, silent=false){
+async function fetchThread(myTok,otherTok,silent=false){
   try{
-    const msgs = await rpc("get_thread", { p_my_token: myTok, p_other_token: otherTok });
-    const body = $("chatBody");
-    const atBottom = body.scrollHeight - body.scrollTop - body.clientHeight < 60;
+    const msgs=await rpc("get_thread",{p_my_token:myTok,p_other_token:otherTok});
+    const body=$("chatBody");
+    const atBottom=body.scrollHeight-body.scrollTop-body.clientHeight<60;
     body.replaceChildren();
     if(!msgs.length){
-      const ph = el("p","","Say hi! 👋");
-      ph.style.cssText = "text-align:center;color:var(--muted);margin:auto;padding:50px 0;font-size:18px";
+      const ph=el("p","","Say hi! 👋");
+      ph.style.cssText="text-align:center;color:var(--muted);margin:auto;padding:50px 0;font-size:18px";
       body.append(ph);
     } else {
-      msgs.forEach(m => {
-        const wrap = el("div"); wrap.style.cssText = "display:flex;flex-direction:column";
-        const bub = el("div","bubble " + (m.from_me ? "me" : "them"), m.body);
-        bub.append(el("div","bubble-time", m.time));
+      msgs.forEach(m=>{
+        const wrap=el("div"); wrap.style.cssText="display:flex;flex-direction:column";
+        const bub=el("div","bubble "+(m.from_me?"me":"them"),m.body);
+        bub.append(el("div","bubble-time",m.time));
         wrap.append(bub); body.append(wrap);
       });
     }
-    if(atBottom || !silent) body.scrollTop = body.scrollHeight;
-    $("globalBadge").hidden = true;
-  } catch(e){ if(!silent) console.error(e); }
+    if(atBottom||!silent) body.scrollTop=body.scrollHeight;
+    $("globalBadge").hidden=true;
+  }catch(e){if(!silent) console.error(e);}
 }
 
-async function sendMsg(myTok, otherTok){
-  const text = $("chatText").value.trim();
-  if(!text) return;
-  $("chatText").value = "";
-  $("btnSend").disabled = true;
+async function sendMsg(myTok,otherTok){
+  const text=$("chatText").value.trim(); if(!text) return;
+  $("chatText").value=""; $("btnSend").disabled=true;
   try{
-    await rpc("send_message", { p_from_token: myTok, p_to_token: otherTok, p_body: text });
-    await fetchThread(myTok, otherTok);
-  } catch(e){ alert(e.message); $("chatText").value = text; }
-  finally{ $("btnSend").disabled = false; $("chatText").focus(); }
+    await rpc("send_message",{p_from_token:myTok,p_to_token:otherTok,p_body:text});
+    await fetchThread(myTok,otherTok);
+  }catch(e){alert(e.message);$("chatText").value=text;}
+  finally{$("btnSend").disabled=false;$("chatText").focus();}
 }
 
 /* init */
 (function(){
-  const saved = loadToken();
+  const saved=loadToken();
   if(saved){
-    $("globalBadge").textContent = "…"; $("globalBadge").hidden = false;
-    rpc("check_matches",{p_token:saved}).then(d => {
-      const u = d && d.total_unread || 0;
-      if(u > 0){ $("globalBadge").textContent = u; $("globalBadge").hidden = false; }
-      else { $("globalBadge").hidden = true; }
-    }).catch(() => { $("globalBadge").hidden = true; });
+    $("globalBadge").textContent="…"; $("globalBadge").hidden=false;
+    rpc("check_matches",{p_token:saved}).then(d=>{
+      const u=d&&d.total_unread||0;
+      if(u>0){$("globalBadge").textContent=u;$("globalBadge").hidden=false;}
+      else{$("globalBadge").hidden=true;}
+    }).catch(()=>{$("globalBadge").hidden=true;});
   }
 })();
 </script>
