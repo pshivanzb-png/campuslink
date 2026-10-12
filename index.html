@@ -3,123 +3,172 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>CampusLink – Swap skills with students in your college</title>
-<meta name="description" content="Tell us what you can teach and what you need. We match you with a student in your own college. ₹99, lifetime access.">
+<title>MissingPiece – Find your skill match in college</title>
+<meta name="description" content="Every student has a skill someone else needs. MissingPiece connects you with students in your own college. ₹99, lifetime access.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#14213d;--muted:#5b6478;--bg:#f4f7fb;--card:#ffffff;
-  --blue:#2b59ff;--blue-dark:#1d3fcc;--sun:#ffb703;--line:#dde3ee;
-  --ok:#0f8a5f;--err:#c0302b;--green:#e4f6ee;--yellow:#fff8e1;
+  --ink:#1a1a2e;--muted:#6b7280;--bg:#f0f4ff;--card:#ffffff;
+  --purple:#7c3aed;--purple-light:#ede9fe;--purple-dark:#5b21b6;
+  --pink:#ec4899;--pink-light:#fce7f3;
+  --yellow:#fbbf24;--yellow-light:#fef3c7;
+  --green:#10b981;--green-light:#d1fae5;
+  --line:#e5e7eb;--err:#dc2626;--ok:#059669;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;height:100%}
-body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:17px}
-h1,h2,h3{font-family:'Bricolage Grotesque','DM Sans',sans-serif;line-height:1.1;margin:0}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:17px;overflow-x:hidden}
+h1,h2,h3{font-family:'Nunito',sans-serif;line-height:1.1;margin:0}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
-header{padding:18px 0;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:100;border-bottom:1px solid var(--line)}
+
+/* ── HEADER ── */
+header{padding:16px 0;position:sticky;top:env(safe-area-inset-top,0px);background:rgba(240,244,255,0.92);backdrop-filter:blur(12px);z-index:100;border-bottom:2px solid var(--line)}
 header .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.5px;cursor:pointer}
-.brand span{color:var(--blue)}
-.linkbtn{background:none;border:0;color:var(--blue);font:inherit;font-weight:500;cursor:pointer;text-decoration:underline;padding:6px;position:relative}
-.badge{position:absolute;top:-2px;right:-2px;background:#e53935;color:#fff;border-radius:999px;font-size:11px;font-weight:700;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;letter-spacing:-.5px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.brand .piece{color:var(--purple)}
+.brand .emoji{font-size:26px;animation:spin 6s linear infinite}
+@keyframes spin{0%,90%{transform:rotate(0deg)}95%{transform:rotate(20deg)}100%{transform:rotate(0deg)}}
+.linkbtn{background:none;border:0;color:var(--purple);font:inherit;font-weight:700;cursor:pointer;padding:8px 14px;position:relative;border-radius:10px;transition:background .15s}
+.linkbtn:hover{background:var(--purple-light)}
+.badge{position:absolute;top:-4px;right:-4px;background:var(--pink);color:#fff;border-radius:999px;font-size:11px;font-weight:900;min-width:20px;height:20px;display:flex;align-items:center;justify-content:center;padding:0 5px;border:2px solid var(--bg)}
 button,input,textarea{font:inherit}
-:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
-.btn{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:14px 24px;font-weight:700;font-size:16px;cursor:pointer;text-decoration:none}
-.btn:hover{background:var(--blue-dark)}
-.btn:disabled{opacity:.6;cursor:wait}
-.btn.ghost{background:#fff;color:var(--blue);border:2px solid var(--blue)}
-.btn.sm{padding:8px 16px;font-size:15px;border-radius:9px}
-.price{margin-left:14px;color:var(--muted);font-size:15px}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
 
-/* hero */
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:36px 0 56px}
-.hero h1{font-size:clamp(36px,6vw,58px);font-weight:800;letter-spacing:-1.5px}
-.hero p.sub{font-size:19px;color:var(--muted);max-width:480px;margin:18px 0 26px}
-.swap{position:relative;display:grid;gap:0}
-.pcard{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:16px 18px;box-shadow:6px 6px 0 var(--ink)}
-.pcard+.pcard{margin-top:46px;margin-left:28px;box-shadow:6px 6px 0 var(--sun)}
-.tag{display:inline-block;border-radius:999px;padding:3px 12px;font-size:14px;font-weight:500;margin:3px 4px 0 0}
-.tag.give{background:#e3ebff;color:var(--blue-dark)}
-.tag.get{background:#fff1cc;color:#8a5a00}
-.arrows{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--sun);border:2px solid var(--ink);border-radius:50%;width:52px;height:52px;display:grid;place-items:center;z-index:2}
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;border:0;border-radius:14px;padding:14px 26px;font-family:'Nunito',sans-serif;font-weight:800;font-size:17px;cursor:pointer;text-decoration:none;transition:transform .1s,box-shadow .1s;box-shadow:0 4px 0 var(--purple-dark)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--purple-dark)}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--purple-dark)}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
+.btn.pink{background:var(--pink);box-shadow:0 4px 0 #be185d}
+.btn.pink:hover{box-shadow:0 6px 0 #be185d}
+.btn.ghost{background:#fff;color:var(--purple);border:2.5px solid var(--purple);box-shadow:0 4px 0 var(--purple-light)}
+.btn.ghost:hover{background:var(--purple-light)}
+.btn.sm{padding:9px 18px;font-size:15px;border-radius:10px;box-shadow:0 3px 0 var(--purple-dark)}
+.btn.green{background:var(--green);box-shadow:0 4px 0 #047857}
+.btn.green:hover{box-shadow:0 6px 0 #047857}
 
-/* steps */
-section.block{padding:40px 0}
-section.block h2{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.8px;margin-bottom:22px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0;margin:0;list-style:none;counter-reset:s}
-.steps li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;counter-increment:s}
-.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;margin-bottom:10px}
+/* ── HERO ── */
+.hero{padding:50px 0 60px;text-align:center;position:relative}
+.hero-badge{display:inline-block;background:var(--yellow-light);color:#92400e;border:2px solid var(--yellow);border-radius:999px;padding:6px 16px;font-weight:700;font-size:14px;margin-bottom:20px}
+.hero h1{font-size:clamp(38px,7vw,68px);font-weight:900;letter-spacing:-2px;line-height:1.05;max-width:800px;margin:0 auto 20px}
+.hero h1 .hl{position:relative;display:inline-block;color:var(--purple)}
+.hero h1 .hl::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:6px;background:var(--yellow);border-radius:3px;transform:rotate(-1deg)}
+.hero p.sub{font-size:19px;color:var(--muted);max-width:520px;margin:0 auto 32px}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.price-note{margin-top:14px;color:var(--muted);font-size:15px}
+
+/* floating emoji decorations */
+.deco{position:absolute;font-size:36px;opacity:.18;pointer-events:none;user-select:none}
+.deco.d1{top:30px;left:5%}
+.deco.d2{top:60px;right:6%}
+.deco.d3{bottom:20px;left:8%}
+.deco.d4{bottom:40px;right:4%}
+
+/* ── PUZZLE VISUAL ── */
+.puzzle-wrap{display:flex;justify-content:center;gap:0;margin:40px 0 56px;position:relative}
+.puzzle-card{background:var(--card);border:2.5px solid var(--ink);border-radius:20px;padding:18px 20px;width:220px;box-shadow:6px 6px 0 var(--ink);position:relative}
+.puzzle-card.right{margin-left:-2px;box-shadow:6px 6px 0 var(--yellow)}
+.puzzle-card small{display:block;font-weight:700;font-size:13px;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.skill-chip{display:inline-flex;align-items:center;gap:4px;border-radius:10px;padding:5px 12px;font-size:14px;font-weight:700;margin:3px 3px 0 0}
+.chip-has{background:var(--green-light);color:#065f46}
+.chip-needs{background:var(--pink-light);color:#9d174d}
+.puzzle-join{width:56px;height:56px;background:var(--yellow);border:2.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:24px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;box-shadow:3px 3px 0 var(--ink)}
+
+/* ── HOW IT WORKS ── */
+.section{padding:48px 0}
+.section-title{font-size:clamp(26px,4vw,38px);font-weight:900;text-align:center;margin-bottom:8px}
+.section-sub{text-align:center;color:var(--muted);margin:0 auto 32px;max-width:480px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;list-style:none;padding:0;margin:0}
+.steps li{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:22px;position:relative;overflow:hidden}
+.steps li::before{content:'';position:absolute;top:0;left:0;right:0;height:5px}
+.steps li:nth-child(1)::before{background:var(--purple)}
+.steps li:nth-child(2)::before{background:var(--pink)}
+.steps li:nth-child(3)::before{background:var(--green)}
+.step-num{font-family:'Nunito',sans-serif;font-weight:900;font-size:38px;line-height:1;margin-bottom:8px}
+.steps li:nth-child(1) .step-num{color:var(--purple)}
+.steps li:nth-child(2) .step-num{color:var(--pink)}
+.steps li:nth-child(3) .step-num{color:var(--green)}
 .steps h3{font-size:19px;margin-bottom:6px}
 .steps p{margin:0;color:var(--muted);font-size:15px}
 
-/* panel / form */
-.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;max-width:640px;margin:0 auto}
-.pay{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center;background:#fff8e1;border:1px solid #f1dfa6;border-radius:14px;padding:16px;margin-bottom:22px}
-.qr{width:150px;height:150px;border-radius:10px;overflow:hidden;background:#fff;border:1px dashed #cdb86a;display:grid;place-items:center;font-size:13px;color:var(--muted)}
+/* ── PANEL / FORM ── */
+.panel{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:28px;max-width:640px;margin:0 auto;box-shadow:0 8px 32px rgba(124,58,237,.08)}
+.panel-title{font-size:28px;font-weight:900;margin-bottom:6px}
+.pay-box{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center;background:var(--yellow-light);border:2px solid var(--yellow);border-radius:16px;padding:16px;margin-bottom:22px}
+.qr{width:150px;height:150px;border-radius:12px;overflow:hidden;background:#fff;border:2px dashed #d97706;display:grid;place-items:center;font-size:13px;color:var(--muted)}
 .qr img{width:100%;height:100%;object-fit:contain}
 label{display:block;font-weight:700;margin:16px 0 6px;font-size:16px}
 .hint{font-weight:400;color:var(--muted);font-size:14px}
-input,textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff;color:var(--ink)}
-input:focus,textarea:focus{border-color:var(--blue);outline:none}
+input,textarea{width:100%;border:2px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;color:var(--ink);transition:border-color .15s}
+input:focus,textarea:focus{border-color:var(--purple);outline:none;box-shadow:0 0 0 3px var(--purple-light)}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.msg{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:15px}
-.msg.err{background:#fdeceb;color:var(--err)}
-.msg.ok{background:#e4f6ee;color:var(--ok)}
-.code{font-family:ui-monospace,Menlo,monospace;background:var(--bg);border:1.5px dashed var(--ink);border-radius:10px;padding:12px;word-break:break-all;font-size:15px;margin:10px 0}
+.msg{margin-top:14px;padding:12px 16px;border-radius:12px;font-size:15px;font-weight:500}
+.msg.err{background:#fef2f2;color:var(--err);border:1.5px solid #fecaca}
+.msg.ok{background:var(--green-light);color:#065f46;border:1.5px solid #6ee7b7}
+.code{font-family:ui-monospace,Menlo,monospace;background:var(--bg);border:2px dashed var(--purple);border-radius:12px;padding:14px;word-break:break-all;font-size:15px;margin:12px 0}
 
 /* photo upload */
 .photo-wrap{display:flex;align-items:center;gap:16px;margin-top:8px}
-.photo-preview{width:80px;height:80px;border-radius:50%;background:var(--bg);border:2px dashed var(--line);overflow:hidden;display:grid;place-items:center;flex-shrink:0;color:var(--muted);font-size:13px;text-align:center}
+.photo-preview{width:80px;height:80px;border-radius:50%;background:var(--bg);border:3px dashed var(--line);overflow:hidden;display:grid;place-items:center;flex-shrink:0;color:var(--muted);font-size:13px;text-align:center;transition:border-color .2s}
 .photo-preview img{width:100%;height:100%;object-fit:cover}
 .photo-info{font-size:14px;color:var(--muted)}
 
-/* section labels */
-.section-label{display:flex;align-items:center;gap:10px;margin:24px 0 10px}
-.section-label h3{font-size:18px;margin:0}
-.section-label .pill{border-radius:999px;padding:3px 12px;font-size:13px;font-weight:700}
-.pill.mutual{background:#e3ebff;color:var(--blue-dark)}
-.pill.oneway{background:#fff1cc;color:#8a5a00}
+/* ── SECTION LABELS ── */
+.section-label{display:flex;align-items:center;gap:10px;margin:26px 0 8px}
+.section-label h3{font-size:19px;margin:0;font-weight:800}
+.pill{border-radius:999px;padding:4px 14px;font-size:13px;font-weight:700}
+.pill.mutual{background:var(--purple-light);color:var(--purple-dark)}
+.pill.oneway{background:var(--yellow-light);color:#92400e}
 .section-desc{font-size:14px;color:var(--muted);margin:0 0 12px}
 
-/* match cards */
-.match{border:1.5px solid var(--ink);border-radius:14px;padding:16px;margin-top:10px;box-shadow:4px 4px 0 var(--sun)}
-.match.oneway-card{box-shadow:4px 4px 0 #ffb703;border-color:var(--ink);opacity:.95}
-.match-top{display:flex;gap:14px;align-items:center;margin-bottom:10px}
-.avatar{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid var(--line);flex-shrink:0;background:var(--bg)}
-.avatar-placeholder{width:58px;height:58px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;color:#fff;flex-shrink:0}
-.match h3{font-size:19px;margin-bottom:2px}
-.match p{margin:2px 0;color:var(--muted);font-size:15px}
-.match .line{margin-top:8px;font-size:15px;color:var(--ink)}
-.unread-dot{display:inline-block;background:#e53935;color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:1px 8px;margin-left:8px;vertical-align:middle}
+/* ── MATCH CARDS ── */
+.match{border:2px solid var(--line);border-radius:16px;padding:16px;margin-top:10px;background:#fff;transition:box-shadow .15s,transform .15s}
+.match:hover{box-shadow:0 6px 20px rgba(124,58,237,.12);transform:translateY(-2px)}
+.match.mutual-card{border-color:var(--purple);box-shadow:4px 4px 0 var(--purple-light)}
+.match.oneway-card{border-color:var(--yellow);box-shadow:4px 4px 0 var(--yellow-light)}
+.match-top{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid var(--line);flex-shrink:0;background:var(--bg)}
+.avatar-placeholder{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pink));display:grid;place-items:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;color:#fff;flex-shrink:0}
+.match h3{font-size:18px;margin-bottom:2px;font-weight:800}
+.match p{margin:2px 0;color:var(--muted);font-size:14px}
+.chips-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.unread-dot{display:inline-flex;align-items:center;background:var(--pink);color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:2px 9px;margin-left:8px;vertical-align:middle}
 
-/* chat */
-.chat-wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;height:calc(100vh - 120px)}
-.chat-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--card);border-bottom:1px solid var(--line);border-radius:18px 18px 0 0}
-.chat-header .avatar,.chat-header .avatar-placeholder{width:42px;height:42px;font-size:16px}
-.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
-.bubble{max-width:75%;padding:10px 14px;border-radius:14px;font-size:15px;line-height:1.4}
-.bubble.me{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:4px}
-.bubble.them{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px}
-.bubble-time{font-size:12px;opacity:.6;margin-top:4px;text-align:right}
-.chat-input{display:flex;gap:10px;padding:12px 16px;background:var(--card);border-top:1px solid var(--line);border-radius:0 0 18px 18px}
-.chat-input textarea{resize:none;border-radius:10px;padding:10px 12px;height:44px;line-height:1.3}
-.chat-input button{flex-shrink:0;align-self:flex-end}
+/* ── CHAT ── */
+.chat-outer{max-width:640px;margin:0 auto;display:flex;flex-direction:column;height:calc(100vh - 130px);border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.1)}
+.chat-header{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--purple);color:#fff}
+.chat-header .avatar,.chat-header .avatar-placeholder{width:40px;height:40px;font-size:15px;border-color:rgba(255,255,255,.3)}
+.chat-header-info b{font-family:'Nunito',sans-serif;font-size:17px}
+.chat-header-info small{opacity:.8;font-size:13px}
+.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#f9f0ff}
+.bubble{max-width:78%;padding:10px 14px;border-radius:16px;font-size:15px;line-height:1.4;word-break:break-word}
+.bubble.me{align-self:flex-end;background:var(--purple);color:#fff;border-bottom-right-radius:4px}
+.bubble.them{align-self:flex-start;background:#fff;border:1.5px solid var(--line);border-bottom-left-radius:4px;color:var(--ink)}
+.bubble-time{font-size:11px;opacity:.6;margin-top:4px;text-align:right}
+.chat-footer{display:flex;gap:10px;padding:12px 14px;background:#fff;border-top:2px solid var(--line)}
+.chat-footer textarea{resize:none;border-radius:12px;padding:10px 12px;height:44px;line-height:1.3;border:2px solid var(--line)}
+.chat-footer textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px var(--purple-light);outline:none}
+.chat-footer button{flex-shrink:0;align-self:flex-end}
 
-footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
+footer{padding:40px 0 54px;text-align:center;color:var(--muted);font-size:14px}
+footer .foot-brand{font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:var(--purple);margin-bottom:4px}
 [hidden]{display:none!important}
+
 @media(max-width:760px){
   body{font-size:16px}
-  .hero{grid-template-columns:1fr;gap:28px;padding-top:16px}
+  .hero{padding:32px 0 40px}
+  .puzzle-wrap{flex-direction:column;align-items:center;gap:20px}
+  .puzzle-card.right{margin-left:0}
+  .puzzle-join{display:none}
   .steps{grid-template-columns:1fr}
   .row{grid-template-columns:1fr}
-  .pay{grid-template-columns:1fr;justify-items:center;text-align:center}
-  .price{display:block;margin:10px 0 0}
-  .chat-wrap{height:calc(100vh - 80px)}
+  .pay-box{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .chat-outer{height:calc(100vh - 90px);border-radius:0}
+  .deco{display:none}
 }
 </style>
 </head>
@@ -127,100 +176,123 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
 
 <header>
   <div class="wrap">
-    <div class="brand" id="brandHome">Campus<span>Link</span></div>
+    <div class="brand" id="brandHome">
+      <span class="emoji">🧩</span>Missing<span class="piece">Piece</span>
+    </div>
     <button class="linkbtn" id="btnHave">
-      Already joined? Check matches
+      Already in? Check matches
       <span class="badge" id="globalBadge" hidden></span>
     </button>
   </div>
 </header>
 
 <main>
-<!-- HOME -->
+<!-- ══ HOME ══ -->
 <div id="viewHome">
   <div class="wrap">
+
     <div class="hero">
-      <div>
-        <h1>Swap skills with students in your own college.</h1>
-        <p class="sub">Tell us what you can teach and what you need. We match you with students in your college who have what you need.</p>
-        <button class="btn" id="btnJoin">Join for ₹99</button>
-        <span class="price">One-time · Lifetime access</span>
+      <span class="deco d1">🎨</span>
+      <span class="deco d2">💻</span>
+      <span class="deco d3">🎬</span>
+      <span class="deco d4">📐</span>
+
+      <div class="hero-badge">🎓 For college students only</div>
+      <h1>You have a skill.<br>Someone needs it.<br>Find your <span class="hl">missing piece</span>.</h1>
+      <p class="sub">Every student in your college has something to offer and something to learn. We connect the two.</p>
+      <div class="hero-btns">
+        <button class="btn" id="btnJoin">🚀 Join for ₹99</button>
+        <button class="btn ghost" id="btnHave2">Already in? →</button>
       </div>
-      <div class="swap" aria-hidden="true">
-        <div class="pcard">
-          <small style="color:var(--muted)">You</small>
-          <span class="tag give">I teach: video editing</span><br>
-          <span class="tag get">I need: Python</span>
-        </div>
-        <div class="arrows">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#14213d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h12l-3-3M17 17H5l3 3"/></svg>
-        </div>
-        <div class="pcard">
-          <small style="color:var(--muted)">A student in your college</small>
-          <span class="tag give">I teach: Python</span><br>
-          <span class="tag get">I need: video editing</span>
-        </div>
+      <p class="price-note">One-time payment · Lifetime access · No subscription</p>
+    </div>
+
+    <div class="puzzle-wrap" aria-hidden="true">
+      <div class="puzzle-card">
+        <small>You</small>
+        <div><span class="skill-chip chip-has">✅ Video editing</span></div>
+        <div><span class="skill-chip chip-needs">🔍 Need: Python</span></div>
+      </div>
+      <div class="puzzle-join">🤝</div>
+      <div class="puzzle-card right">
+        <small>Your college mate</small>
+        <div><span class="skill-chip chip-has">✅ Python</span></div>
+        <div><span class="skill-chip chip-needs">🔍 Need: Video editing</span></div>
       </div>
     </div>
-    <section class="block">
-      <h2>How it works</h2>
+
+    <section class="section">
+      <h2 class="section-title">How it works 👇</h2>
+      <p class="section-sub">Three steps and you're connected with students from your own college.</p>
       <ol class="steps">
-        <li><h3>Pay and register</h3><p>Pay ₹99 on PhonePe, then fill your college, branch, section, skills you offer and skills you need.</p></li>
-        <li><h3>We confirm your payment</h3><p>We check your payment reference and unlock your profile. Usually done within a few hours.</p></li>
-        <li><h3>Message your matches</h3><p>See students from your college who have skills you need — then message them directly.</p></li>
+        <li>
+          <div class="step-num">01</div>
+          <h3>Pay ₹99 & register</h3>
+          <p>Pay on PhonePe, fill in your skills and what you want to learn. Takes 2 minutes.</p>
+        </li>
+        <li>
+          <div class="step-num">02</div>
+          <h3>We verify your payment</h3>
+          <p>We check your payment reference and unlock your account. Usually within a few hours.</p>
+        </li>
+        <li>
+          <div class="step-num">03</div>
+          <h3>Message your matches</h3>
+          <p>See students from your college who have what you need — then slide into their DMs. 📩</p>
+        </li>
       </ol>
     </section>
   </div>
 </div>
 
-<!-- JOIN -->
+<!-- ══ JOIN ══ -->
 <div id="viewJoin" hidden>
   <div class="wrap" style="padding:30px 20px">
     <div class="panel">
-      <h2 style="font-size:30px;margin-bottom:6px">Join CampusLink</h2>
-      <p style="margin:0 0 20px;color:var(--muted)">Pay first, then fill your details.</p>
+      <div class="panel-title">Join MissingPiece 🧩</div>
+      <p style="margin:4px 0 22px;color:var(--muted)">Pay first, then fill your details below.</p>
 
-      <div class="pay">
+      <div class="pay-box">
         <div class="qr"><img src="phonepe-qr.png" alt="PhonePe QR" id="qrImg"></div>
         <div>
-          <b style="font-size:18px">Step 1: Pay ₹99 on PhonePe</b>
-          <p style="margin:6px 0 0;color:var(--muted);font-size:15px">Scan with any UPI app. Copy the UTR / transaction ID from the payment screen — you need it below.</p>
+          <b style="font-size:18px;font-family:'Nunito',sans-serif">Step 1 — Pay ₹99 💸</b>
+          <p style="margin:6px 0 0;color:var(--muted);font-size:15px">Scan the QR with any UPI app. Copy the UTR / transaction ID from the success screen — you'll need it below.</p>
         </div>
       </div>
 
-      <b style="font-size:18px">Step 2: Your details</b>
+      <b style="font-size:18px;font-family:'Nunito',sans-serif">Step 2 — Your details ✍️</b>
       <form id="joinForm" novalidate>
 
-        <label>Profile photo <span class="hint">(optional — compressed automatically)</span></label>
+        <label>Profile photo <span class="hint">(optional — auto-compressed to under 100KB)</span></label>
         <div class="photo-wrap">
-          <div class="photo-preview" id="photoPreview"><span>No photo</span></div>
+          <div class="photo-preview" id="photoPreview"><span>😊</span></div>
           <div>
             <input type="file" id="photoFile" accept="image/*" style="width:auto;padding:6px 0">
-            <div class="photo-info" id="photoInfo">Max 5 MB. Compressed to under 100 KB in your browser before uploading.</div>
+            <div class="photo-info" id="photoInfo">Pick a clear photo of yourself. We shrink it in your browser — no heavy uploads.</div>
           </div>
         </div>
 
-        <label for="name">Full name</label>
-        <input id="name" autocomplete="name" required maxlength="80">
+        <label for="iname">Full name</label>
+        <input id="iname" autocomplete="name" required maxlength="80" placeholder="Your full name">
 
-        <label for="college">College name <span class="hint">(write it fully)</span></label>
-        <input id="college" required maxlength="120" placeholder="e.g. Kakatiya Institute of Technology">
+        <label for="icollege">College name <span class="hint">(write it fully — used for matching)</span></label>
+        <input id="icollege" required maxlength="120" placeholder="e.g. Kakatiya Institute of Technology and Science">
 
         <div class="row">
-          <div><label for="branch">Branch</label><input id="branch" required maxlength="60" placeholder="e.g. CSE"></div>
-          <div><label for="section">Section</label><input id="section" required maxlength="20" placeholder="e.g. A"></div>
+          <div><label for="ibranch">Branch</label><input id="ibranch" required maxlength="60" placeholder="e.g. CSE"></div>
+          <div><label for="isection">Section</label><input id="isection" required maxlength="20" placeholder="e.g. A"></div>
         </div>
 
-        <label for="skills">Skills you can help with <span class="hint">(comma separated)</span></label>
-        <textarea id="skills" rows="2" required placeholder="video editing, canva, excel"></textarea>
+        <label for="iskills">Skills you can help others with <span class="hint">(comma separated)</span></label>
+        <textarea id="iskills" rows="2" required placeholder="video editing, canva, excel, public speaking…"></textarea>
 
-        <label for="needs">Skills you want to learn <span class="hint">(comma separated)</span></label>
-        <textarea id="needs" rows="2" required placeholder="python, public speaking"></textarea>
+        <label for="ineeds">Skills you want to learn <span class="hint">(comma separated)</span></label>
+        <textarea id="ineeds" rows="2" required placeholder="python, UI design, content writing…"></textarea>
 
-        <label for="utr">Payment reference (UTR / transaction ID)</label>
-        <input id="utr" required maxlength="40" autocomplete="off" placeholder="From your PhonePe payment screen">
+        <label for="iutr">Payment reference (UTR / transaction ID)</label>
+        <input id="iutr" required maxlength="40" autocomplete="off" placeholder="Paste from your PhonePe success screen">
 
-        <button class="btn" id="btnSubmit" type="submit" style="margin-top:22px;width:100%">Register</button>
+        <button class="btn" id="btnSubmit" type="submit" style="margin-top:22px;width:100%">🎉 Complete Registration</button>
         <div class="msg err" id="joinErr" hidden></div>
       </form>
       <p style="text-align:center;margin:18px 0 0"><button class="linkbtn" id="btnBack1">← Back</button></p>
@@ -228,40 +300,46 @@ footer{padding:36px 0 50px;color:var(--muted);font-size:14px;text-align:center}
   </div>
 </div>
 
-<!-- MATCHES -->
+<!-- ══ MATCHES ══ -->
 <div id="viewMatches" hidden>
   <div class="wrap" style="padding:30px 20px">
     <div class="panel">
       <div id="lookupBox">
-        <h2 style="font-size:28px;margin-bottom:8px">Check my matches</h2>
+        <div class="panel-title">Find your matches 🔍</div>
+        <p style="margin:4px 0 18px;color:var(--muted)">Paste the access code you got when you registered.</p>
         <label for="tokenIn">Your access code</label>
-        <input id="tokenIn" autocomplete="off" placeholder="Paste the code you received after registering">
-        <button class="btn" id="btnLookup" style="margin-top:14px;width:100%">Check</button>
+        <input id="tokenIn" autocomplete="off" placeholder="Paste your code here…">
+        <button class="btn" id="btnLookup" style="margin-top:14px;width:100%">🔍 Check my matches</button>
         <div class="msg err" id="statusErr" hidden></div>
       </div>
       <div id="matchResult" hidden></div>
-      <p style="text-align:center;margin:18px 0 0"><button class="linkbtn" id="btnBack2">← Back to home</button></p>
+      <p style="text-align:center;margin:20px 0 0"><button class="linkbtn" id="btnBack2">← Back to home</button></p>
     </div>
   </div>
 </div>
 
-<!-- CHAT -->
+<!-- ══ CHAT ══ -->
 <div id="viewChat" hidden>
   <div class="wrap" style="padding:20px 20px 30px">
-    <div class="chat-wrap">
+    <div class="chat-outer">
       <div class="chat-header" id="chatHeader"></div>
       <div class="chat-body" id="chatBody"></div>
-      <div class="chat-input">
-        <textarea id="chatText" placeholder="Type a message…" rows="1"></textarea>
-        <button class="btn sm" id="btnSend">Send</button>
+      <div class="chat-footer">
+        <textarea id="chatText" placeholder="Type something… 👋"></textarea>
+        <button class="btn sm" id="btnSend">Send →</button>
       </div>
     </div>
-    <p style="text-align:center;margin:12px 0 0"><button class="linkbtn" id="btnBackChat">← Back to matches</button></p>
+    <p style="text-align:center;margin:14px 0 0"><button class="linkbtn" id="btnBackChat">← Back to matches</button></p>
   </div>
 </div>
 </main>
 
-<footer><div class="wrap">CampusLink · Built by a student, for students.</div></footer>
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">🧩 MissingPiece</div>
+    Built by a student, for students. · Connect · Learn · Grow
+  </div>
+</footer>
 
 <script>
 const SUPABASE_URL = "https://gtjphqestjwrmlysrhpt.supabase.co";
@@ -298,10 +376,10 @@ async function rpc(fn, body){
   return data;
 }
 
-function saveToken(t){ myToken = t; try{ localStorage.setItem("cl_token", t); }catch(_){} }
-function loadToken(){ if(!myToken){ try{ myToken = localStorage.getItem("cl_token"); }catch(_){} } return myToken; }
+function saveToken(t){ myToken = t; try{ localStorage.setItem("mp_token", t); }catch(_){} }
+function loadToken(){ if(!myToken){ try{ myToken = localStorage.getItem("mp_token"); }catch(_){} } return myToken; }
 
-/* ── PHOTO COMPRESSION ── */
+/* photo compression */
 async function compressImage(file, maxKB=100){
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -311,21 +389,19 @@ async function compressImage(file, maxKB=100){
         let w = img.width, h = img.height;
         const MAX = 800;
         if(w > MAX || h > MAX){
-          if(w > h){ h = Math.round(h * MAX/w); w = MAX; }
-          else{ w = Math.round(w * MAX/h); h = MAX; }
+          if(w > h){ h = Math.round(h*MAX/w); w = MAX; }
+          else{ w = Math.round(w*MAX/h); h = MAX; }
         }
         const canvas = document.createElement("canvas");
         canvas.width = w; canvas.height = h;
-        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-        let quality = 0.85;
-        const tryCompress = () => {
-          canvas.toBlob(blob => {
-            if(!blob) return reject(new Error("Could not compress image."));
-            if(blob.size <= maxKB * 1024 || quality < 0.2){ resolve(blob); }
-            else{ quality -= 0.1; tryCompress(); }
-          }, "image/jpeg", quality);
-        };
-        tryCompress();
+        canvas.getContext("2d").drawImage(img,0,0,w,h);
+        let q = 0.85;
+        const go = () => canvas.toBlob(blob => {
+          if(!blob) return reject(new Error("Compression failed."));
+          if(blob.size <= maxKB*1024 || q < 0.2) resolve(blob);
+          else{ q -= 0.1; go(); }
+        }, "image/jpeg", q);
+        go();
       };
       img.onerror = () => reject(new Error("Could not read image."));
       img.src = e.target.result;
@@ -336,109 +412,115 @@ async function compressImage(file, maxKB=100){
 }
 
 async function uploadPhoto(blob, token){
-  const path = token + ".jpg";
-  const res = await fetch(SUPABASE_URL + "/storage/v1/object/profiles/" + path, {
+  const res = await fetch(SUPABASE_URL + "/storage/v1/object/profiles/" + token + ".jpg", {
     method:"POST",
-    headers:{"apikey": SUPABASE_KEY, "Content-Type":"image/jpeg"},
+    headers:{"apikey":SUPABASE_KEY,"Content-Type":"image/jpeg"},
     body: blob
   });
   if(!res.ok) throw new Error("Photo upload failed.");
-  return SUPABASE_URL + "/storage/v1/object/public/profiles/" + path;
+  return SUPABASE_URL + "/storage/v1/object/public/profiles/" + token + ".jpg";
 }
 
-/* ── PHOTO PREVIEW ── */
 $("photoFile").addEventListener("change", async () => {
   const file = $("photoFile").files[0];
   if(!file) return;
-  $("photoInfo").textContent = "Compressing…";
+  $("photoInfo").textContent = "Compressing… ✨";
   try{
     const blob = await compressImage(file);
     $("photoPreview").innerHTML = `<img src="${URL.createObjectURL(blob)}" alt="preview">`;
-    $("photoInfo").textContent = `Compressed to ${Math.round(blob.size/1024)} KB. Looks good!`;
-  } catch(e){ $("photoInfo").textContent = "Could not compress: " + e.message; }
+    $("photoInfo").textContent = `✅ Compressed to ${Math.round(blob.size/1024)} KB. Looking good!`;
+  } catch(e){ $("photoInfo").textContent = "Oops: " + e.message; }
 });
 
-/* ── NAV ── */
-$("brandHome").onclick = () => show("viewHome");
-$("btnJoin").onclick   = () => show("viewJoin");
-$("btnBack1").onclick  = () => show("viewHome");
-$("btnBack2").onclick  = () => show("viewHome");
+/* nav */
+$("brandHome").onclick  = () => show("viewHome");
+$("btnJoin").onclick    = () => show("viewJoin");
+$("btnHave2").onclick   = () => openMatches();
+$("btnBack1").onclick   = () => show("viewHome");
+$("btnBack2").onclick   = () => show("viewHome");
 $("btnBackChat").onclick = () => { show("viewMatches"); loadMatches(loadToken()); };
 $("qrImg").onerror = () => $("qrImg").parentElement.textContent = "Add phonepe-qr.png";
+$("btnHave").onclick = () => openMatches();
 
-$("btnHave").onclick = () => {
+function openMatches(){
   $("matchResult").hidden = true;
   $("lookupBox").hidden = false;
   $("statusErr").hidden = true;
   $("tokenIn").value = loadToken() || "";
   show("viewMatches");
-};
+}
 
-/* ── REGISTER ── */
+/* register */
 $("joinForm").addEventListener("submit", async e => {
   e.preventDefault();
   $("joinErr").hidden = true;
   const btn = $("btnSubmit");
-  btn.disabled = true; btn.textContent = "Registering…";
+  btn.disabled = true; btn.textContent = "Registering… ⏳";
   try{
     const token = await rpc("register", {
-      p_name:$("name").value, p_college:$("college").value,
-      p_branch:$("branch").value, p_section:$("section").value,
-      p_skills:$("skills").value, p_needs:$("needs").value,
-      p_utr:$("utr").value, p_photo_url:""
+      p_name:$("iname").value, p_college:$("icollege").value,
+      p_branch:$("ibranch").value, p_section:$("isection").value,
+      p_skills:$("iskills").value, p_needs:$("ineeds").value,
+      p_utr:$("iutr").value, p_photo_url:""
     });
-
     const file = $("photoFile").files[0];
     if(file){
-      btn.textContent = "Uploading photo…";
+      btn.textContent = "Uploading photo… 📸";
       try{
         const blob = await compressImage(file);
         await uploadPhoto(blob, token);
-      } catch(pe){ console.warn("Photo upload failed:", pe.message); }
+      } catch(pe){ console.warn("Photo:", pe.message); }
     }
-
     saveToken(token);
     $("joinForm").reset();
-    $("photoPreview").innerHTML = "<span>No photo</span>";
-
-    $("matchResult").hidden = false;
-    $("lookupBox").hidden = true;
-    $("matchResult").replaceChildren();
-    const h = el("h2","","You're registered! 🎉");
-    h.style.marginBottom = "8px";
-    $("matchResult").append(h);
-    $("matchResult").append(el("p","","Save your access code below. It is the only way to check your matches."));
-    $("matchResult").append(el("div","code", token));
-    const copy = el("button","btn ghost sm","Copy code");
-    copy.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(token); copy.textContent = "Copied ✓"; };
-    $("matchResult").append(copy);
-    $("matchResult").append(el("div","msg ok","Payment is being verified. Your matches appear once confirmed. Come back with your code in a few hours."));
+    $("photoPreview").innerHTML = "<span>😊</span>";
+    showSuccessPanel(token);
     show("viewMatches");
   } catch(err){
     $("joinErr").textContent = err.message;
     $("joinErr").hidden = false;
   } finally {
-    btn.disabled = false; btn.textContent = "Register";
+    btn.disabled = false; btn.textContent = "🎉 Complete Registration";
   }
 });
 
-/* ── LOOKUP ── */
+function showSuccessPanel(token){
+  $("matchResult").hidden = false;
+  $("lookupBox").hidden = true;
+  const box = $("matchResult");
+  box.replaceChildren();
+  const h = el("div","panel-title","You're in! 🎉");
+  h.style.marginBottom = "8px";
+  box.append(h);
+  box.append(el("p","","Your MissingPiece account is live. Save this access code — it's the only way to check your matches."));
+  box.append(el("div","code", token));
+  const copy = el("button","btn ghost sm","📋 Copy code");
+  copy.onclick = () => { navigator.clipboard && navigator.clipboard.writeText(token); copy.textContent = "Copied ✓"; };
+  box.append(copy);
+  box.append(el("div","msg ok","💸 Payment is being verified. Your matches unlock once confirmed. Come back in a few hours with your code!"));
+}
+
+/* lookup */
 $("btnLookup").onclick = async () => {
   const t = $("tokenIn").value.trim();
   $("statusErr").hidden = true;
-  if(!t) return showStatusErr("Paste your access code first.");
-  const b = $("btnLookup"); b.disabled = true; b.textContent = "Checking…";
+  if(!t) return showErr("Paste your access code first.");
+  const b = $("btnLookup"); b.disabled = true; b.textContent = "Checking… 🔍";
   try{ saveToken(t); await loadMatches(t); }
-  catch(err){ showStatusErr(err.message.includes("uuid") ? "That code looks wrong. Copy it again carefully." : err.message); }
-  finally{ b.disabled = false; b.textContent = "Check"; }
+  catch(err){ showErr(err.message.includes("uuid") ? "That code looks wrong. Copy it again carefully." : err.message); }
+  finally{ b.disabled = false; b.textContent = "🔍 Check my matches"; }
 };
 
-function showStatusErr(msg){ $("statusErr").textContent = msg; $("statusErr").hidden = false; }
+function showErr(msg){ $("statusErr").textContent = msg; $("statusErr").hidden = false; }
 
-/* ── MATCH CARD BUILDER ── */
-function buildMatchCard(m, myTok, isOneway){
-  const card = el("div", "match" + (isOneway ? " oneway-card" : ""));
+function initAvatar(name){
+  const d = el("div","avatar-placeholder");
+  d.textContent = (name||"?")[0].toUpperCase();
+  return d;
+}
 
+function buildCard(m, myTok, isOneway){
+  const card = el("div","match " + (isOneway ? "oneway-card" : "mutual-card"));
   const top = el("div","match-top");
   if(m.photo_url){
     const img = document.createElement("img");
@@ -446,60 +528,51 @@ function buildMatchCard(m, myTok, isOneway){
     img.onerror = () => img.replaceWith(initAvatar(m.name));
     top.append(img);
   } else { top.append(initAvatar(m.name)); }
-
   const info = el("div");
   const nameRow = el("h3","", m.name);
-  if(m.unread > 0){ nameRow.append(" "); nameRow.append(el("span","unread-dot", m.unread + " new")); }
+  if(m.unread > 0){ nameRow.append(" "); nameRow.append(el("span","unread-dot", m.unread + " new 💬")); }
   info.append(nameRow);
   info.append(el("p","", m.college + " · " + m.branch + " · Sec " + m.section));
-  top.append(info);
-  card.append(top);
+  top.append(info); card.append(top);
 
-  if(m.they_offer && m.they_offer.length)
-    card.append(el("div","line","They can teach you: " + m.they_offer.join(", ")));
-  if(m.they_need && m.they_need.length)
-    card.append(el("div","line","They need from you: " + m.they_need.join(", ")));
-  if(isOneway && (!m.they_need || !m.they_need.length))
-    card.append(el("div","line" ,"They haven't listed a skill you offer — but you can still reach out!"));
+  const chips = el("div","chips-row");
+  (m.they_offer||[]).forEach(s => { const c = el("span","skill-chip chip-has","✅ " + s); chips.append(c); });
+  (m.they_need||[]).forEach(s => { const c = el("span","skill-chip chip-needs","🔍 " + s); chips.append(c); });
+  if(chips.children.length) card.append(chips);
+
+  if(isOneway && (!m.they_need||!m.they_need.length)){
+    card.append(el("p","section-desc","They have a skill you need. Say hi and see if you can help each other! 👋"));
+  }
 
   const msgBtn = el("button","btn sm","💬 Message");
   msgBtn.style.marginTop = "12px";
   msgBtn.onclick = () => openChat(myTok, m);
   card.append(msgBtn);
-
   return card;
 }
 
-function initAvatar(name){
-  const d = el("div","avatar-placeholder");
-  d.textContent = (name || "?")[0].toUpperCase();
-  return d;
-}
-
-/* ── LOAD MATCHES ── */
 async function loadMatches(token){
   if(!token) return;
   const data = await rpc("check_matches", { p_token: token });
-  if(!data.found) throw new Error("No registration found for this code.");
+  if(!data.found) throw new Error("No account found for this code. Double-check it.");
 
   $("lookupBox").hidden = true;
   const box = $("matchResult");
-  box.hidden = false;
-  box.replaceChildren();
+  box.hidden = false; box.replaceChildren();
 
   const unread = data.total_unread || 0;
   if(unread > 0){ $("globalBadge").textContent = unread; $("globalBadge").hidden = false; }
   else { $("globalBadge").hidden = true; }
 
-  const greeting = el("h2","", "Hi " + data.name.split(" ")[0]);
+  const greeting = el("div","panel-title","Hey " + data.name.split(" ")[0] + "! 👋");
+  if(unread > 0){ greeting.append(" "); greeting.append(el("span","unread-dot", unread + " new 💬")); }
   greeting.style.marginBottom = "6px";
-  if(unread > 0){ greeting.append(" "); greeting.append(el("span","unread-dot", unread + " new")); }
   box.append(greeting);
 
   if(!data.paid){
-    box.append(el("div","msg ok","Your payment is being checked. Once confirmed, your matches appear here. Come back with your code."));
-    const re = el("button","btn ghost","Check again"); re.style.marginTop = "14px";
-    re.onclick = () => loadMatches(token).catch(e => showStatusErr(e.message));
+    box.append(el("div","msg ok","⏳ Payment is being verified. Matches unlock once confirmed. Come back with your code!"));
+    const re = el("button","btn ghost","🔄 Refresh"); re.style.marginTop = "14px";
+    re.onclick = () => loadMatches(token).catch(e => showErr(e.message));
     box.append(re);
     return;
   }
@@ -507,60 +580,45 @@ async function loadMatches(token){
   const mutual = data.matches || [];
   const oneway = data.oneway || [];
 
-  /* ── MUTUAL SECTION ── */
-  const mutLabel = el("div","section-label");
-  const mutH = el("h3","","Mutual matches");
-  const mutPill = el("span","pill mutual","Skill swap");
-  mutLabel.append(mutH, mutPill);
-  box.append(mutLabel);
-  box.append(el("p","section-desc","Both of you have what the other needs — perfect for a skill swap."));
+  /* mutual */
+  const ml = el("div","section-label");
+  ml.append(el("h3","","🤝 Mutual matches")); ml.append(el("span","pill mutual","Skill swap"));
+  box.append(ml);
+  box.append(el("p","section-desc","Both of you have what the other needs — perfect for a real skill swap!"));
+  if(mutual.length) mutual.forEach(m => box.append(buildCard(m, token, false)));
+  else box.append(el("p","","No mutual matches yet — check below 👇"));
 
-  if(mutual.length){
-    mutual.forEach(m => box.append(buildMatchCard(m, token, false)));
-  } else {
-    box.append(el("p","","No mutual matches yet. Check the section below."));
-  }
+  /* one-way */
+  const ol = el("div","section-label"); ol.style.marginTop = "24px";
+  ol.append(el("h3","","💡 They have your skill")); ol.append(el("span","pill oneway","One-way"));
+  box.append(ol);
+  box.append(el("p","section-desc","These students have a skill you want. Message them — you might still be able to help each other!"));
+  if(oneway.length) oneway.forEach(m => box.append(buildCard(m, token, true)));
+  else box.append(el("p","","No one-way matches yet. More appear as new students join! 🚀"));
 
-  /* ── ONE-WAY SECTION ── */
-  const owLabel = el("div","section-label");
-  owLabel.style.marginTop = "28px";
-  const owH = el("h3","","They have your skill");
-  const owPill = el("span","pill oneway","One-way");
-  owLabel.append(owH, owPill);
-  box.append(owLabel);
-  box.append(el("p","section-desc","These students have a skill you need. They may not need yours — but you can still message and connect."));
-
-  if(oneway.length){
-    oneway.forEach(m => box.append(buildMatchCard(m, token, true)));
-  } else {
-    box.append(el("p","","No one-way matches found either. More matches appear as new students join."));
-  }
-
-  const re = el("button","btn ghost","Refresh"); re.style.marginTop = "22px";
-  re.onclick = () => loadMatches(token).catch(e => showStatusErr(e.message));
+  const re = el("button","btn ghost","🔄 Refresh"); re.style.marginTop = "22px";
+  re.onclick = () => loadMatches(token).catch(e => showErr(e.message));
   box.append(re);
 }
 
-/* ── CHAT ── */
+/* chat */
 async function openChat(myTok, other){
   show("viewChat");
-  const hdr = $("chatHeader");
-  hdr.replaceChildren();
+  const hdr = $("chatHeader"); hdr.replaceChildren();
   if(other.photo_url){
     const img = document.createElement("img");
     img.className = "avatar"; img.src = other.photo_url; img.alt = other.name;
     img.onerror = () => img.replaceWith(initAvatar(other.name));
     hdr.append(img);
   } else { hdr.append(initAvatar(other.name)); }
-  const hn = el("div");
-  hn.append(el("b","",other.name));
-  hn.append(el("div","",other.college + " · " + other.branch));
-  hdr.append(hn);
+  const hi = el("div","chat-header-info");
+  hi.append(el("b","",other.name));
+  hi.append(el("small","", other.college + " · " + other.branch));
+  hdr.append(hi);
 
   await fetchThread(myTok, other.token);
   clearInterval(pollTimer);
   pollTimer = setInterval(() => fetchThread(myTok, other.token, true), 8000);
-
   $("btnSend").onclick = () => sendMsg(myTok, other.token);
   $("chatText").onkeydown = e => {
     if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); sendMsg(myTok, other.token); }
@@ -574,17 +632,15 @@ async function fetchThread(myTok, otherTok, silent=false){
     const atBottom = body.scrollHeight - body.scrollTop - body.clientHeight < 60;
     body.replaceChildren();
     if(!msgs.length){
-      const ph = el("p","","No messages yet. Say hi!");
-      ph.style.cssText = "text-align:center;color:var(--muted);margin:auto;padding:40px 0";
+      const ph = el("p","","Say hi! 👋");
+      ph.style.cssText = "text-align:center;color:var(--muted);margin:auto;padding:50px 0;font-size:18px";
       body.append(ph);
     } else {
       msgs.forEach(m => {
-        const wrap = el("div");
-        wrap.style.cssText = "display:flex;flex-direction:column";
+        const wrap = el("div"); wrap.style.cssText = "display:flex;flex-direction:column";
         const bub = el("div","bubble " + (m.from_me ? "me" : "them"), m.body);
         bub.append(el("div","bubble-time", m.time));
-        wrap.append(bub);
-        body.append(wrap);
+        wrap.append(bub); body.append(wrap);
       });
     }
     if(atBottom || !silent) body.scrollTop = body.scrollHeight;
@@ -604,17 +660,16 @@ async function sendMsg(myTok, otherTok){
   finally{ $("btnSend").disabled = false; $("chatText").focus(); }
 }
 
-/* ── INIT ── */
+/* init */
 (function(){
   const saved = loadToken();
   if(saved){
-    $("globalBadge").textContent = "…";
-    $("globalBadge").hidden = false;
+    $("globalBadge").textContent = "…"; $("globalBadge").hidden = false;
     rpc("check_matches",{p_token:saved}).then(d => {
       const u = d && d.total_unread || 0;
       if(u > 0){ $("globalBadge").textContent = u; $("globalBadge").hidden = false; }
       else { $("globalBadge").hidden = true; }
-    }).catch(()=>{ $("globalBadge").hidden = true; });
+    }).catch(() => { $("globalBadge").hidden = true; });
   }
 })();
 </script>
